@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sebastião Nunes — Diagnósticos Estratégicos Executivos</title>
+<meta name="description" content="Diagnósticos estratégicos gratuitos desenvolvidos para revelar o estágio real das organizações — e o que fazer a partir dele.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #0C1520; --navy-mid: #111C2A; --navy-light: #1E2F45;
+    --gold: #C4A464; --gold-bright: #E8C87A; --gold-dim: rgba(196,164,100,0.14); --gold-dim2: rgba(196,164,100,0.07);
+    --ivory: #F0EDE8; --ivory-bright: #F8F7F4; --slate: #8A9BB0; --slate-dim: #5C6C82;
+    --font-display: 'Playfair Display', serif; --font-body: 'Inter', sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font-body); background: var(--navy); color: var(--ivory); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 48px;
+    background: rgba(12,21,32,0.92); backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(196,164,100,0.12);
+  }
+  .nav-logo { font-family: var(--font-display); font-size: 19px; font-weight: 800; color: var(--ivory-bright); letter-spacing: 0.2px; }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 32px; align-items: center; }
+  .nav-links a { color: var(--slate); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--gold-bright); }
+  .nav-cta { border: 1px solid var(--gold); color: var(--gold-bright); padding: 8px 20px; border-radius: 6px; font-size: 13px; font-weight: 600; text-decoration: none; transition: all 0.2s; }
+  .nav-cta:hover { background: var(--gold-dim); }
+  .hero { min-height: 92vh; display: flex; align-items: center; padding: 140px 48px 80px; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; top: -240px; right: -200px; width: 800px; height: 800px; background: radial-gradient(circle, rgba(196,164,100,0.08) 0%, transparent 70%); pointer-events: none; }
+  .hero-inner { max-width: 780px; margin: 0 auto; width: 100%; text-align: center; }
+  .hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; background: var(--gold-dim); border: 1px solid rgba(196,164,100,0.3); color: var(--gold-bright); padding: 7px 16px; border-radius: 20px; font-size: 12px; font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 28px; }
+  .hero-eyebrow::before { content: '●'; font-size: 8px; }
+  .hero h1 { font-family: var(--font-display); font-size: clamp(34px, 4.6vw, 58px); font-weight: 800; line-height: 1.18; letter-spacing: -0.5px; margin-bottom: 26px; }
+  .hero h1 em { color: var(--gold); font-style: normal; }
+  .hero-sub { font-size: 18px; color: var(--slate); line-height: 1.75; margin: 0 auto 40px; max-width: 560px; }
+  .hero-actions { display: flex; gap: 16px; align-items: center; justify-content: center; flex-wrap: wrap; }
+  .btn-primary { background: var(--gold); color: var(--navy); padding: 15px 30px; border-radius: 8px; font-size: 15px; font-weight: 700; text-decoration: none; transition: all 0.2s; display: inline-flex; align-items: center; gap: 8px; }
+  .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+  .btn-ghost { color: var(--slate); font-size: 14px; text-decoration: none; display: flex; align-items: center; gap: 6px; transition: color 0.2s; border-bottom: 1px solid transparent; }
+  .btn-ghost:hover { color: var(--ivory-bright); border-color: var(--slate); }
+  .hero-stat-row { display: flex; gap: 40px; margin-top: 56px; padding-top: 32px; border-top: 1px solid rgba(196,164,100,0.15); justify-content: center; }
+  .hero-stat-num { font-family: var(--font-display); font-size: 30px; font-weight: 800; color: var(--gold-bright); line-height: 1; }
+  .hero-stat-label { font-size: 12.5px; color: var(--slate-dim); margin-top: 6px; }
+  section { padding: 100px 48px; }
+  .section-inner { max-width: 1080px; margin: 0 auto; }
+  .section-eyebrow { font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+  .section-title { font-family: var(--font-display); font-size: clamp(28px, 3vw, 40px); font-weight: 800; letter-spacing: -0.5px; line-height: 1.2; margin-bottom: 18px; }
+  .section-sub { font-size: 16px; color: var(--slate); line-height: 1.75; max-width: 620px; }
+  .diagnosticos { background: var(--navy-mid); }
+  .diag-intro { max-width: 680px; margin-bottom: 56px; }
+  .diag-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+  .diag-card { background: var(--navy); border: 1px solid rgba(196,164,100,0.15); border-radius: 14px; padding: 30px; position: relative; transition: border-color 0.2s, transform 0.2s; display: flex; flex-direction: column; }
+  .diag-card.available { border-color: rgba(196,164,100,0.3); }
+  .diag-card.available:hover { transform: translateY(-2px); border-color: var(--gold); }
+  .diag-num { font-family: var(--font-display); font-size: 13px; color: var(--slate-dim); margin-bottom: 12px; letter-spacing: 0.5px; }
+  .diag-title { font-size: 18px; font-weight: 700; color: var(--ivory-bright); margin-bottom: 8px; font-family: var(--font-display); }
+  .diag-question { font-size: 14px; color: var(--slate); line-height: 1.6; margin-bottom: 20px; flex-grow: 1; }
+  .diag-status { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; padding: 6px 14px; border-radius: 20px; align-self: flex-start; }
+  .diag-status.ok { background: var(--gold-dim); color: var(--gold-bright); }
+  .diag-status.soon { background: rgba(255,255,255,0.05); color: var(--slate-dim); }
+  .diag-card a.diag-link { text-decoration: none; }
+  .perspectivas { text-align: center; }
+  .perspectivas .section-inner { max-width: 640px; }
+  .perspectivas .section-eyebrow, .perspectivas .section-title, .perspectivas .section-sub { margin-left: auto; margin-right: auto; }
+  .perspectivas-empty { margin-top: 40px; padding: 40px; border: 1px dashed rgba(196,164,100,0.25); border-radius: 14px; }
+  .perspectivas-empty p { font-size: 14px; color: var(--slate); line-height: 1.7; margin-bottom: 20px; }
+  .sobre { background: var(--navy-mid); }
+  .sobre-grid { display: grid; grid-template-columns: 260px 1fr; gap: 64px; align-items: start; margin-top: 56px; }
+  .sobre-avatar { width: 100%; aspect-ratio: 1; border-radius: 16px; border: 1px solid rgba(196,164,100,0.2); overflow: hidden; }
+  .sobre-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .sobre-name { font-family: var(--font-display); font-size: 27px; font-weight: 800; letter-spacing: -0.3px; margin-bottom: 6px; }
+  .sobre-title { font-size: 14px; color: var(--gold-bright); font-weight: 500; margin-bottom: 22px; }
+  .sobre-bio { font-size: 15px; color: var(--slate); line-height: 1.85; margin-bottom: 28px; }
+  .sobre-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .sobre-tag { background: var(--gold-dim); border: 1px solid rgba(196,164,100,0.25); color: var(--gold-bright); padding: 5px 13px; border-radius: 20px; font-size: 12px; font-weight: 500; }
+  .contato { text-align: center; background: linear-gradient(135deg, var(--navy-mid) 0%, var(--navy-light) 100%); }
+  .contato .section-inner { max-width: 560px; margin: 0 auto; }
+  .contato .section-eyebrow, .contato .section-title, .contato .section-sub { margin-left: auto; margin-right: auto; }
+  .contato-actions { margin-top: 32px; }
+  footer { background: var(--navy); border-top: 1px solid rgba(196,164,100,0.1); padding: 32px 48px; text-align: center; font-size: 13px; color: var(--slate-dim); }
+  footer a { color: var(--slate); text-decoration: none; }
+  footer a:hover { color: var(--gold-bright); }
+  @media (max-width: 768px) {
+    nav { padding: 16px 20px; }
+    .nav-links { display: none; }
+    .hero { padding: 110px 20px 60px; }
+    section { padding: 64px 20px; }
+    .sobre-grid { grid-template-columns: 1fr; gap: 32px; }
+    .sobre-avatar { max-width: 200px; }
+    .hero-stat-row { gap: 24px; flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-logo">Sebastião <span>Nunes</span></div>
+  <div class="nav-links">
+    <a href="#diagnosticos">Diagnósticos</a>
+    <a href="#perspectivas">Perspectivas</a>
+    <a href="#sobre">Sobre</a>
+    <a href="#contato" class="nav-cta">Contato</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Diagnósticos Estratégicos Gratuitos</div>
+    <h1>Organizações que se <em>conhecem</em> tomam decisões melhores.</h1>
+    <p class="hero-sub">Diagnósticos estratégicos gratuitos desenvolvidos para revelar o estágio real das organizações — e o que fazer a partir dele.</p>
+    <div class="hero-actions">
+      <a href="#diagnosticos" class="btn-primary">Explorar diagnósticos →</a>
+      <a href="#sobre" class="btn-ghost">Conhecer o trabalho</a>
+    </div>
+    <div class="hero-stat-row">
+      <div><div class="hero-stat-num">2</div><div class="hero-stat-label">diagnósticos disponíveis</div></div>
+      <div><div class="hero-stat-num">5</div><div class="hero-stat-label">diagnósticos na plataforma IME</div></div>
+      <div><div class="hero-stat-num">100%</div><div class="hero-stat-label">gratuito, sem cadastro</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="diagnosticos" id="diagnosticos">
+  <div class="section-inner">
+    <div class="section-eyebrow">IME — Índice de Maturidade Executiva</div>
+    <div class="diag-intro">
+      <h2 class="section-title">Uma sequência de diagnósticos para revelar o estágio real da sua organização</h2>
+      <p class="section-sub">Cada diagnóstico responde a uma pergunta central sobre a maturidade da empresa. Juntos, formam um mapa completo — da clareza estratégica à capacidade de execução e mudança.</p>
+    </div>
+    <div class="diag-grid">
+      <div class="diag-card available">
+        <div class="diag-num">Diagnóstico 01</div>
+        <div class="diag-title">Clareza Estratégica</div>
+        <div class="diag-question">A empresa sabe para onde vai?</div>
+        <a class="diag-link" href="clareza-estrategica.html"><span class="diag-status ok">Disponível →</span></a>
+      </div>
+      <div class="diag-card">
+        <div class="diag-num">Diagnóstico 02</div>
+        <div class="diag-title">Maturidade de Gestão</div>
+        <div class="diag-question">A empresa tem o modelo de gestão para executar?</div>
+        <span class="diag-status soon">Em breve</span>
+      </div>
+      <div class="diag-card">
+        <div class="diag-num">Diagnóstico 03</div>
+        <div class="diag-title">Maturidade em Planejamento Estratégico</div>
+        <div class="diag-question">A empresa transforma visão em planos executáveis?</div>
+        <span class="diag-status soon">Em breve</span>
+      </div>
+      <div class="diag-card">
+        <div class="diag-num">Diagnóstico 04</div>
+        <div class="diag-title">Prontidão para Transformação</div>
+        <div class="diag-question">A empresa consegue mudar quando precisa?</div>
+        <span class="diag-status soon">Em breve</span>
+      </div>
+      <div class="diag-card available">
+        <div class="diag-num">Diagnóstico 05</div>
+        <div class="diag-title">AI Ready</div>
+        <div class="diag-question">A empresa está pronta para implantar IA?</div>
+        <a class="diag-link" href="https://diagnostico.sebastiaonrs.com.br" target="_blank"><span class="diag-status ok">Disponível →</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="perspectivas" id="perspectivas">
+  <div class="section-inner">
+    <div class="section-eyebrow">Perspectivas</div>
+    <h2 class="section-title">Reflexões sobre estratégia, IA e transformação organizacional</h2>
+    <p class="section-sub">Conteúdos executivos sobre os temas que moldam a agenda de liderança hoje.</p>
+    <div class="perspectivas-empty">
+      <p>Em breve, artigos e reflexões executivas publicados aqui. Enquanto isso, acompanhe as publicações diárias no LinkedIn.</p>
+      <a href="https://www.linkedin.com/in/sebastiao-nunes-rocha-de-souza" target="_blank" class="btn-ghost">Seguir no LinkedIn ↗</a>
+    </div>
+  </div>
+</section>
+
+<section class="sobre" id="sobre">
+  <div class="section-inner">
+    <div class="section-eyebrow">Quem está por trás</div>
+    <div class="sobre-grid">
+      <div class="sobre-avatar"><img src="https://snrsadm.github.io/aiready/foto.png.png" alt="Sebastião Nunes"></div>
+      <div>
+        <div class="sobre-name">Sebastião Nunes</div>
+        <div class="sobre-title">Executivo de Estratégia, Transformação e Inovação</div>
+        <p class="sobre-bio">Tenho sólida experiência em Planejamento Estratégico, Inovação e Transformação Empresarial. Ao longo da carreira, liderei iniciativas de transformação organizacional, governança corporativa, implantação de tecnologias, gestão de portfólio de projetos e PMO Executivo, apoiando empresas de diferentes portes e segmentos na construção de organizações mais eficientes, competitivas e sustentáveis.<br><br>Acredito que a Inteligência Artificial representa uma das maiores oportunidades de transformação da história dos negócios. No entanto, seu verdadeiro potencial somente se concretiza quando a tecnologia está alinhada à estratégia, aos processos, à cultura organizacional e ao desenvolvimento das lideranças e equipes.<br><br>Foi dessa convicção que nasceram os diagnósticos estratégicos gratuitos reunidos aqui. Ao acompanhar organizações em suas jornadas de transformação, observei um padrão recorrente: muitas empresas avançam — em IA ou em qualquer agenda estratégica — antes mesmo de desenvolver as capacidades organizacionais necessárias para transformar intenção em resultado.<br><br>Por isso, concebi esta plataforma para ser o primeiro passo dessa jornada: ajudar empresas e lideranças a compreenderem seu estágio atual, identificarem prioridades de evolução e estabelecerem uma base sólida para que suas decisões estratégicas gerem resultados concretos, sustentáveis e alinhados ao negócio.</p>
+        <div class="sobre-tags">
+          <span class="sobre-tag">Estratégia Corporativa</span>
+          <span class="sobre-tag">Transformação Empresarial</span>
+          <span class="sobre-tag">Governança</span>
+          <span class="sobre-tag">PMO Executivo</span>
+          <span class="sobre-tag">Inovação</span>
+          <span class="sobre-tag">Inteligência Artificial</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contato" id="contato">
+  <div class="section-inner">
+    <div class="section-eyebrow">Contato</div>
+    <h2 class="section-title">Vamos conversar</h2>
+    <p class="section-sub">A forma mais direta de chegar até mim é pelo LinkedIn.</p>
+    <div class="contato-actions">
+      <a href="https://www.linkedin.com/in/sebastiao-nunes-rocha-de-souza" target="_blank" class="btn-primary">Conectar no LinkedIn ↗</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Sebastião Nunes · <a href="https://www.linkedin.com/in/sebastiao-nunes-rocha-de-souza" target="_blank">LinkedIn</a></p>
+</footer>
+</body>
+</html>
