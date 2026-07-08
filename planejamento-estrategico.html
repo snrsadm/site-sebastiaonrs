@@ -1,0 +1,279 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Planejamento Estratégico — Diagnóstico IME | Sebastião Nunes</title>
+<meta name="description" content="Diagnóstico gratuito: sua empresa transforma visão em planos executáveis? Avalie em 7 dimensões a maturidade do seu processo de planejamento estratégico. Resultado imediato, sem cadastro.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #0C1520; --navy-mid: #111C2A; --navy-light: #1E2F45;
+    --gold: #C4A464; --gold-bright: #E8C87A; --gold-dim: rgba(196,164,100,0.14); --gold-dim2: rgba(196,164,100,0.07);
+    --ivory: #F0EDE8; --ivory-bright: #F8F7F4; --slate: #8A9BB0; --slate-dim: #5C6C82;
+    --danger: #E2734B; --danger-dim: rgba(226,115,75,0.14); --danger-text: #F0AE8C;
+    --font-display: 'Playfair Display', serif; --font-body: 'Inter', sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font-body); background: var(--navy); color: var(--ivory); line-height: 1.6; -webkit-font-smoothing: antialiased; min-height: 100vh; padding: 40px 20px; }
+  .page-wrap { max-width: 760px; margin: 0 auto; }
+  .page-header { text-align: center; margin-bottom: 28px; }
+  .page-eyebrow { display: inline-flex; align-items: center; gap: 8px; background: var(--gold-dim); border: 1px solid rgba(196,164,100,0.3); color: var(--gold-bright); padding: 6px 16px; border-radius: 20px; font-size: 12px; font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 18px; }
+  .page-title { font-family: var(--font-display); font-size: clamp(26px, 3.4vw, 38px); font-weight: 800; letter-spacing: -0.5px; margin-bottom: 12px; }
+  .page-sub { font-size: 15px; color: var(--slate); max-width: 520px; margin: 0 auto; line-height: 1.7; }
+  .tool-wrapper { background: var(--navy-mid); border: 1px solid rgba(196,164,100,0.15); border-radius: 20px; padding: 40px; }
+  .tool-body h2 { font-family: var(--font-display); font-size: 19px; font-weight: 800; margin-bottom: 8px; }
+  .tool-body .tsub { font-size: 14px; color: var(--slate); margin-bottom: 20px; line-height: 1.6; }
+  .prog-label { font-size: 12px; color: var(--slate); margin-bottom: 5px; }
+  .prog-bar { height: 3px; background: rgba(255,255,255,0.06); border-radius: 4px; margin-bottom: 24px; }
+  .prog-fill { height: 3px; border-radius: 4px; background: var(--gold); transition: width 0.3s; }
+  .dim-header { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px; padding-bottom: 14px; border-bottom: 1px solid rgba(196,164,100,0.15); }
+  .dim-icon { width: 36px; height: 36px; border-radius: 8px; background: var(--gold-dim); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 18px; }
+  .dim-title { font-size: 15px; font-weight: 600; color: var(--ivory-bright); }
+  .dim-desc { font-size: 13px; color: var(--slate); margin-top: 2px; }
+  .critica-tag { display: inline-block; font-size: 11px; padding: 2px 9px; border-radius: 20px; background: var(--danger-dim); color: var(--danger-text); margin-left: 8px; font-weight: 500; vertical-align: middle; }
+  .question { background: rgba(255,255,255,0.03); border-radius: 10px; padding: 16px; margin-bottom: 12px; border: 1px solid rgba(255,255,255,0.06); }
+  .q-text { font-size: 14px; color: var(--ivory-bright); line-height: 1.5; margin-bottom: 12px; font-weight: 500; }
+  .opts { display: flex; flex-direction: column; gap: 7px; }
+  .opt { padding: 10px 14px; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; font-size: 13px; color: var(--slate); cursor: pointer; background: rgba(255,255,255,0.02); line-height: 1.5; text-align: left; transition: all 0.15s; }
+  .opt:hover { border-color: var(--gold); color: var(--gold-bright); background: var(--gold-dim2); }
+  .opt.sel { border-color: var(--gold); color: var(--gold-bright); background: var(--gold-dim); font-weight: 600; }
+  .tnav { display: flex; justify-content: space-between; align-items: center; margin-top: 22px; }
+  .tbtn { padding: 10px 22px; border-radius: 8px; font-size: 13px; cursor: pointer; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.04); color: var(--slate); font-weight: 500; transition: all 0.15s; font-family: var(--font-body); }
+  .tbtn:hover { background: rgba(255,255,255,0.09); color: var(--ivory-bright); }
+  .tbtn.primary { background: var(--gold); color: var(--navy); border-color: var(--gold); font-weight: 700; }
+  .tbtn.primary:hover { opacity: 0.88; }
+  .tbtn:disabled { opacity: 0.3; cursor: not-allowed; }
+  .step-ind { font-size: 12px; color: var(--slate-dim); }
+  .intro-list { display: flex; flex-direction: column; gap: 10px; margin: 22px 0 28px; }
+  .intro-item { display: flex; align-items: flex-start; gap: 12px; font-size: 13px; color: var(--slate); line-height: 1.6; }
+  .intro-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); margin-top: 7px; flex-shrink: 0; }
+  .intro-privacy { background: var(--gold-dim2); border: 1px solid rgba(196,164,100,0.2); border-radius: 10px; padding: 14px 16px; font-size: 12.5px; color: var(--slate); line-height: 1.6; margin-bottom: 24px; }
+  .intro-privacy strong { color: var(--gold-bright); }
+  .r-badge { display: inline-block; padding: 6px 20px; border-radius: 20px; font-size: 13px; font-weight: 600; margin-bottom: 12px; }
+  .r-title { font-size: 24px; font-weight: 700; margin-bottom: 8px; font-family: var(--font-display); }
+  .r-sub { font-size: 14px; color: var(--slate); line-height: 1.7; margin-bottom: 24px; }
+  .bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .bar-label { font-size: 13px; color: var(--slate); width: 210px; flex-shrink: 0; }
+  .bar-track { flex: 1; height: 8px; background: rgba(255,255,255,0.06); border-radius: 4px; overflow: hidden; }
+  .bar-fill { height: 8px; border-radius: 4px; background: var(--gold); }
+  .bar-val { font-size: 12px; color: var(--slate-dim); width: 34px; text-align: right; }
+  .radar-wrap { display: flex; justify-content: center; margin: 16px 0 24px; }
+  .radar-svg { width: 100%; max-width: 320px; height: auto; overflow: visible; }
+  .radar-grid { fill: none; stroke: rgba(255,255,255,0.10); stroke-width: 1; }
+  .radar-axis { stroke: rgba(255,255,255,0.10); stroke-width: 1; }
+  .radar-data { fill: rgba(196,164,100,0.22); stroke: var(--gold); stroke-width: 2; }
+  .radar-dot { fill: var(--gold-bright); }
+  .radar-dot-critical { fill: var(--danger-text); stroke: var(--navy); stroke-width: 1; }
+  .radar-label { font-family: var(--font-body); font-size: 10.5px; fill: var(--slate); }
+  .radar-label-critical { fill: var(--danger-text); font-weight: 600; }
+  .tag-fail { font-size: 11px; padding: 1px 8px; border-radius: 20px; background: var(--danger-dim); color: var(--danger-text); margin-left: 6px; font-weight: 500; }
+  .tag-ok { font-size: 11px; padding: 1px 8px; border-radius: 20px; background: var(--gold-dim); color: var(--gold-bright); margin-left: 6px; font-weight: 500; }
+  .alerta-wrap { background: var(--danger-dim); border: 1px solid rgba(226,115,75,0.3); border-radius: 10px; padding: 18px; margin: 16px 0; }
+  .alerta-titulo { font-size: 14px; font-weight: 600; color: var(--danger-text); margin-bottom: 10px; }
+  .alerta-texto { font-size: 13px; color: var(--danger-text); line-height: 1.7; opacity: 0.9; }
+  .ok-box { background: var(--gold-dim); border: 1px solid rgba(196,164,100,0.3); border-radius: 10px; padding: 18px; margin: 16px 0; }
+  .ok-titulo { font-size: 14px; font-weight: 600; color: var(--gold-bright); margin-bottom: 6px; }
+  .ok-texto { font-size: 13px; color: var(--ivory); line-height: 1.7; opacity: 0.85; }
+  .tcta-box { background: rgba(255,255,255,0.03); border-radius: 10px; padding: 22px; margin-top: 22px; text-align: center; border: 1px solid rgba(255,255,255,0.08); }
+  .tcta-box p { font-size: 13px; color: var(--slate); margin-bottom: 16px; line-height: 1.6; }
+  .treiniciar { margin-top: 14px; font-size: 12px; color: var(--slate-dim); cursor: pointer; background: none; border: none; text-decoration: underline; display: block; margin-left: auto; margin-right: auto; font-family: var(--font-body); }
+  .platform-nav { display: flex; flex-direction: column; gap: 8px; margin-top: 18px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.08); }
+  .platform-item { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; border-radius: 8px; background: rgba(255,255,255,0.02); font-size: 13px; gap: 12px; }
+  .platform-item a { color: var(--gold-bright); text-decoration: none; font-weight: 600; }
+  .platform-item a:hover { text-decoration: underline; }
+  .platform-tag { font-size: 11px; color: var(--slate-dim); }
+  footer { text-align: center; margin-top: 28px; font-size: 12px; color: var(--slate-dim); }
+  footer a { color: var(--slate); text-decoration: none; }
+  footer a:hover { color: var(--gold-bright); }
+  @media (max-width: 600px) {
+    body { padding: 24px 14px; }
+    .tool-wrapper { padding: 22px; }
+    .bar-label { width: 130px; font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+<div class="page-wrap">
+  <div class="page-header">
+    <div class="page-eyebrow">IME · Índice de Maturidade Executiva</div>
+    <div class="page-title">Planejamento Estratégico</div>
+    <p class="page-sub">A empresa transforma visão em planos executáveis? Um diagnóstico de 7 dimensões para revelar o quanto o seu processo de planejamento estratégico conecta discurso e execução.</p>
+  </div>
+  <div class="tool-wrapper">
+    <div class="tool-body" id="tool-root"></div>
+  </div>
+  <footer>© 2026 Sebastião Nunes · <a href="https://www.linkedin.com/in/sebastiao-nunes-rocha-de-souza" target="_blank">LinkedIn</a> · <a href="index.html">sebastiaonrs.com.br</a></footer>
+</div>
+<script>
+var DIMS=[
+  {id:"metodologia",title:"Metodologia de Planejamento",desc:"Existe um processo estruturado, ou cada ciclo começa do zero?",icon:"🗺️",critica:false,
+    perguntas:[
+      {text:"O processo de planejamento estratégico da empresa...",opts:["Não existe processo formal — as decisões estratégicas surgem de conversas pontuais.","Existe um processo informal, mas que muda a cada ciclo, sem metodologia fixa.","Existe uma metodologia definida, seguida na maior parte do tempo.","Existe uma metodologia madura, testada em múltiplos ciclos e ajustada com aprendizado."]},
+      {text:"A construção do plano estratégico envolve...",opts:["Apenas o(a) fundador(a) ou o principal executivo, isoladamente.","A alta liderança, mas sem consulta estruturada às áreas operacionais.","A liderança e os principais gestores, com contribuições organizadas das áreas.","Um processo estruturado de múltiplos níveis, com liderança, gestores e áreas-chave contribuindo de forma coordenada."]},
+      {text:"Comparado a dois ou três anos atrás, o processo de planejamento da empresa...",opts:["Continua exatamente igual — ou pior, mais improvisado.","Mudou algumas vezes, sem uma direção clara de evolução.","Evoluiu de forma perceptível, incorporando lições dos ciclos anteriores.","Amadureceu consistentemente e hoje é reconhecido internamente como um processo confiável."]}
+    ]},
+  {id:"desdobramento",title:"Desdobramento em Metas e Iniciativas",desc:"A estratégia vira projetos e metas concretas, ou fica só no discurso?",icon:"🎯",critica:true,
+    alerta:"Quando a estratégia não se desdobra em metas e iniciativas concretas, cada área interpreta as prioridades à sua maneira — e a empresa acaba com um portfólio de projetos desconectado do que realmente importa. É exatamente esse o padrão por trás do dado de que cerca de 28% dos projetos não entregam o resultado de negócio esperado mesmo quando são bem gerenciados: o problema raramente está na execução tática, e sim na conexão fraca entre o que se planeja e o que se executa. Sem esse desdobramento claro, mesmo um plano estratégico bem escrito vira apenas um documento — não um guia real de ação.",
+    perguntas:[
+      {text:"As prioridades estratégicas da empresa se traduzem em...",opts:["Nada concreto — ficam como intenções gerais, sem plano de ação.","Algumas iniciativas isoladas, escolhidas sem critério claro de conexão com a estratégia.","Um conjunto de metas e projetos formalmente ligados às prioridades, na maior parte das áreas.","Metas e iniciativas claramente desdobradas em todos os níveis, com relação direta e rastreável com a estratégia."]},
+      {text:"Quando um gestor de área é perguntado como o trabalho do time contribui para a estratégia da empresa...",opts:["Ele não sabe responder ou faz uma relação forçada.","Ele consegue uma relação genérica, sem conectar a atividades específicas.","Ele aponta projetos e metas específicas de sua área ligadas à estratégia.","Ele explica com precisão como cada iniciativa do time se conecta a um objetivo estratégico específico."]},
+      {text:"As metas estabelecidas a partir do planejamento estratégico...",opts:["Não existem, ou existem apenas no papel, sem uso no dia a dia.","Existem, mas são genéricas e difíceis de medir objetivamente.","São específicas e mensuráveis na maioria das áreas.","São específicas, mensuráveis, com donos claros e prazos definidos em toda a organização."]}
+    ]},
+  {id:"recursos",title:"Alocação de Recursos",desc:"O orçamento e as pessoas seguem as prioridades estratégicas?",icon:"💰",critica:false,
+    perguntas:[
+      {text:"O orçamento anual da empresa é definido...",opts:["Repetindo o ano anterior, sem relação direta com as prioridades estratégicas atuais.","Com algum ajuste às prioridades, mas a maior parte segue inércia histórica.","Com base nas prioridades estratégicas definidas no planejamento, na maioria das áreas.","Como consequência direta do plano estratégico, com recursos redirecionados ativamente para as prioridades do momento."]},
+      {text:"Quando uma nova prioridade estratégica importante surge...",opts:["Não há mecanismo para realocar recursos — tudo compete com o orçamento já fechado.","É difícil e lento conseguir recursos, mesmo quando a prioridade é reconhecida.","Existe um processo para avaliar e realocar recursos, ainda que sujeito a atrito.","A empresa realoca recursos com agilidade, com um processo claro de repriorização."]},
+      {text:"As pessoas-chave para executar as prioridades estratégicas...",opts:["Estão sobrecarregadas com o dia a dia operacional e raramente dedicam tempo real às iniciativas estratégicas.","Têm algum tempo dedicado, mas o operacional frequentemente atropela.","Têm tempo protegido para iniciativas estratégicas na maior parte do tempo.","Têm alocação clara e protegida, com a organização respeitando essa prioridade mesmo sob pressão operacional."]}
+    ]},
+  {id:"portfolio",title:"Gestão de Portfólio de Projetos",desc:"Os projetos certos são priorizados, com capacidade real de entrega?",icon:"📊",critica:false,
+    perguntas:[
+      {text:"A empresa decide quais projetos executar...",opts:["Sem um processo claro — os projetos aparecem de forma dispersa e são aprovados individualmente.","Com alguma triagem, mas sem comparar projetos entre si por critérios comuns.","Com um processo de priorização que compara projetos por critérios como impacto e viabilidade.","Com um portfólio ativo e gerido, priorizado por critérios claros e revisado periodicamente."]},
+      {text:"A quantidade de projetos em andamento, comparada à capacidade real da empresa de entregá-los...",opts:["É claramente maior — a empresa tenta fazer tudo ao mesmo tempo e entrega pouco.","Está no limite, com sobrecarga frequente das equipes.","É administrada com algum equilíbrio, embora ainda haja picos de sobrecarga.","É dimensionada de forma realista, com a capacidade de entrega guiando quantos projetos entram no portfólio."]},
+      {text:"Quando um projeto deixa de fazer sentido estratégico, a empresa...",opts:["Raramente encerra projetos — eles continuam por inércia mesmo sem propósito claro.","Demora a reconhecer o problema e a decisão de encerrar é lenta e desconfortável.","Consegue encerrar ou redirecionar projetos quando necessário, ainda que com algum atraso.","Tem um processo maduro de revisão que encerra ou redireciona projetos rapidamente quando o contexto muda."]}
+    ]},
+  {id:"acompanhamento",title:"Acompanhamento e Revisão",desc:"O plano é revisitado com frequência, ou só no início e no fim do ano?",icon:"🔄",critica:false,
+    perguntas:[
+      {text:"O plano estratégico é revisitado formalmente...",opts:["Nunca, ou só quando alguém lembra que ele existe.","Uma vez por ano, geralmente no fechamento do ciclo seguinte.","Trimestralmente ou com cadência regular definida.","Em uma cadência regular e disciplinada (mensal ou trimestral), com rito estabelecido e respeitado."]},
+      {text:"Quando uma meta estratégica está fora da rota (atrasada ou abaixo do esperado), a empresa...",opts:["Só percebe isso perto do final do ciclo, quando já é tarde para agir.","Percebe com atraso, mas há alguma discussão sobre o que fazer.","Identifica o desvio com razoável antecedência e discute ações corretivas.","Identifica desvios rapidamente, com um rito estabelecido de correção de rota."]},
+      {text:"As reuniões de acompanhamento estratégico...",opts:["Não existem como prática formal.","Acontecem esporadicamente, sem consistência de pauta ou frequência.","Acontecem com regularidade, com pauta focada em resultados estratégicos.","São um rito consolidado, com pauta objetiva, dados atualizados e decisões registradas."]}
+    ]},
+  {id:"indicadores",title:"Indicadores de Execução",desc:"Existem métricas claras para saber se o plano está sendo cumprido?",icon:"📈",critica:false,
+    perguntas:[
+      {text:"O progresso do plano estratégico é medido...",opts:["De forma subjetiva — não há indicadores claros de acompanhamento.","Com alguns indicadores, mas desconectados das metas estratégicas.","Com indicadores definidos, ligados à maioria das metas estratégicas.","Com um painel de indicadores robusto, atualizado e diretamente ligado a cada objetivo estratégico."]},
+      {text:"Os indicadores usados para acompanhar a estratégia...",opts:["Não existem ou ninguém realmente os consulta.","Existem em planilhas dispersas, de acesso e atualização difíceis.","Estão centralizados e são consultados pela liderança com alguma regularidade.","Estão centralizados, atualizados e fazem parte da rotina de decisão da liderança."]},
+      {text:"Quando a empresa atinge (ou não) uma meta estratégica, essa informação...",opts:["Não gera nenhuma análise — segue-se para o próximo ciclo sem entender o porquê.","Gera comentários informais, sem uma análise estruturada de causa.","É analisada de forma estruturada na maioria dos casos, gerando algum aprendizado.","É sistematicamente analisada, gerando aprendizados que mudam a forma como a empresa planeja o próximo ciclo."]}
+    ]},
+  {id:"adaptacao",title:"Capacidade de Adaptação",desc:"O plano se ajusta quando o contexto muda, ou é rígido até o fim do ciclo?",icon:"🧭",critica:false,
+    perguntas:[
+      {text:"Quando o cenário externo muda de forma relevante (economia, concorrência, tecnologia), o plano estratégico da empresa...",opts:["Permanece o mesmo até o próximo ciclo anual, mesmo que já não faça sentido.","É ajustado de forma reativa e tardia, geralmente sob pressão de uma crise.","É revisado e ajustado dentro de um prazo razoável.","É ajustado com agilidade, como parte natural do processo de gestão estratégica."]},
+      {text:"A empresa tem mecanismos para antecipar mudanças relevantes no ambiente de negócio...",opts:["Não — as mudanças pegam a empresa de surpresa quase sempre.","Alguns sinais são percebidos, mas de forma informal e sem processo estruturado.","Existe algum monitoramento estruturado do ambiente externo (mercado, concorrência, tendências).","Existe um processo estruturado de monitoramento e cenários, que alimenta ajustes proativos no plano."]},
+      {text:"Diante de um erro de rota identificado no meio do ciclo, a cultura da empresa...",opts:["Tende a esconder ou minimizar o problema, por medo de questionar o plano aprovado.","Reconhece o problema com relutância, mas a mudança de rota é lenta.","Trata a correção de rota como parte normal da gestão, sem grande resistência.","Vê a correção de rota como sinal de maturidade, não de fracasso — a mudança acontece rápido e sem drama político."]}
+    ]}
+];
+var SHORT_LABELS=["Metodologia","Desdobramento","Recursos","Portfólio","Revisão","Indicadores","Adaptação"];
+function buildRadarSVG(labels,scores,criticalIdx){
+  var n=labels.length;
+  var size=320,center=size/2,maxR=center-72;
+  function pt(i,ratio){
+    var angle=(Math.PI*2*i/n)-Math.PI/2;
+    return [center+ratio*maxR*Math.cos(angle),center+ratio*maxR*Math.sin(angle)];
+  }
+  var svg="<svg viewBox='0 0 "+size+" "+size+"' class='radar-svg'>";
+  [1,2,3,4].forEach(function(level){
+    var ratio=level/4,pts=[];
+    for(var i=0;i<n;i++){var p=pt(i,ratio);pts.push(p[0].toFixed(1)+","+p[1].toFixed(1));}
+    svg+="<polygon points='"+pts.join(" ")+"' class='radar-grid'/>";
+  });
+  for(var i=0;i<n;i++){
+    var p=pt(i,1);
+    svg+="<line x1='"+center+"' y1='"+center+"' x2='"+p[0].toFixed(1)+"' y2='"+p[1].toFixed(1)+"' class='radar-axis'/>";
+  }
+  var dpts=[];
+  for(var i=0;i<n;i++){var ratio=scores[i]/4;var p=pt(i,ratio);dpts.push(p[0].toFixed(1)+","+p[1].toFixed(1));}
+  svg+="<polygon points='"+dpts.join(" ")+"' class='radar-data'/>";
+  for(var i=0;i<n;i++){var ratio=scores[i]/4;var p=pt(i,ratio);svg+="<circle cx='"+p[0].toFixed(1)+"' cy='"+p[1].toFixed(1)+"' r='4' class='radar-dot"+(i===criticalIdx?" radar-dot-critical":"")+"'/>";}
+  for(var i=0;i<n;i++){
+    var p=pt(i,1.24);
+    var anchor="middle";
+    if(p[0]<center-12)anchor="end"; else if(p[0]>center+12)anchor="start";
+    svg+="<text x='"+p[0].toFixed(1)+"' y='"+p[1].toFixed(1)+"' text-anchor='"+anchor+"' class='radar-label"+(i===criticalIdx?" radar-label-critical":"")+"' dominant-baseline='middle'>"+labels[i]+"</text>";
+  }
+  svg+="</svg>";
+  return svg;
+}
+var curD=0;
+var respostas=[];
+for(var i=0;i<DIMS.length;i++){respostas.push([null,null,null]);}
+function R(id){return document.getElementById(id);}
+function renderTool(html){R("tool-root").innerHTML=html;}
+function telaIntro(){
+  var html="<h2>Antes de começar</h2>";
+  html+="<div class='intro-list'>";
+  html+="<div class='intro-item'><div class='intro-dot'></div>7 dimensões, 3 perguntas cada — cerca de 10 minutos.</div>";
+  html+="<div class='intro-item'><div class='intro-dot'></div>Escolha a afirmação mais próxima da realidade da sua empresa, não a ideal.</div>";
+  html+="<div class='intro-item'><div class='intro-dot'></div>O resultado aparece imediatamente na tela ao final.</div>";
+  html+="</div>";
+  html+="<div class='intro-privacy'><strong>Privacidade:</strong> este diagnóstico não pede nome, e-mail ou empresa, e nenhuma resposta é armazenada em servidor algum. Todo o cálculo acontece no seu navegador — ao fechar a página, nada permanece.</div>";
+  html+="<div class='tnav'><div></div><button class='tbtn primary' id='btn-intro-next'>Iniciar diagnóstico →</button></div>";
+  renderTool(html);
+  R("btn-intro-next").addEventListener("click",function(){curD=0;respostas=[];for(var i=0;i<DIMS.length;i++){respostas.push([null,null,null]);}renderDim();});
+}
+function renderDim(){
+  var d=DIMS[curD];
+  var pct=Math.round(((curD+1)/DIMS.length)*100);
+  var html="<div class='prog-label'>Dimensão "+(curD+1)+" de "+DIMS.length+"</div>";
+  html+="<div class='prog-bar'><div class='prog-fill' style='width:"+pct+"%'></div></div>";
+  html+="<div class='dim-header'><div class='dim-icon'>"+d.icon+"</div><div><div class='dim-title'>"+d.title+(d.critica?"<span class='critica-tag'>dimensão crítica</span>":"")+"</div><div class='dim-desc'>"+d.desc+"</div></div></div>";
+  d.perguntas.forEach(function(q,qi){
+    html+="<div class='question'><div class='q-text'>"+q.text+"</div><div class='opts'>";
+    q.opts.forEach(function(op,oi){
+      var s=(respostas[curD][qi]===(oi+1))?" sel":"";
+      html+="<div class='opt"+s+"' data-qi='"+qi+"' data-val='"+(oi+1)+"'>"+op+"</div>";
+    });
+    html+="</div></div>";
+  });
+  html+="<div class='tnav'>";
+  html+="<button class='tbtn' id='btn-back'"+(curD===0?" disabled":"")+"'>← Anterior</button>";
+  html+="<span class='step-ind'>"+(curD+1)+"/"+DIMS.length+"</span>";
+  html+="<button class='tbtn primary' id='btn-next'>"+(curD===DIMS.length-1?"Ver resultado →":"Próxima →")+"</button>";
+  html+="</div>";
+  renderTool(html);
+  document.querySelectorAll("#tool-root .opt").forEach(function(el){
+    el.addEventListener("click",function(){
+      respostas[curD][parseInt(this.dataset.qi)]=parseInt(this.dataset.val);
+      renderDim();
+    });
+  });
+  R("btn-next").addEventListener("click",function(){
+    if(respostas[curD].some(function(r){return r===null;})){alert("Responda todas as perguntas antes de continuar.");return;}
+    if(curD<DIMS.length-1){curD++;renderDim();}else{mostrarResultado();}
+  });
+  R("btn-back").addEventListener("click",function(){if(curD>0){curD--;renderDim();}});
+}
+function dimScore(di){var s=0;respostas[di].forEach(function(v){s+=v||0;});return Math.round((s/respostas[di].length)*10)/10;}
+function nivelInfo(sc){
+  if(sc<1.8)return{label:"Difusa",bg:"rgba(226,115,75,0.18)",txt:"#F0AE8C"};
+  if(sc<2.5)return{label:"Emergente",bg:"rgba(239,159,39,0.18)",txt:"#F5C87A"};
+  if(sc<3.2)return{label:"Em Desenvolvimento",bg:"rgba(196,164,100,0.16)",txt:"#E8C87A"};
+  if(sc<3.8)return{label:"Consolidada",bg:"rgba(196,164,100,0.22)",txt:"#E8C87A"};
+  return{label:"Referência",bg:"rgba(196,164,100,0.3)",txt:"#F8F7F4"};
+}
+function mostrarResultado(){
+  var scores=DIMS.map(function(_,i){return dimScore(i);});
+  var media=Math.round((scores.reduce(function(a,b){return a+b;},0)/scores.length)*10)/10;
+  var liIdx=DIMS.findIndex(function(d){return d.critica;});
+  var liScore=scores[liIdx];
+  var gated=liScore<2.5;
+  var nv=nivelInfo(media);
+  if(gated&&media>=3.2){nv=nivelInfo(3.1);} // aplica o teto de "Em Desenvolvimento"
+  var dimRows=scores.map(function(s,i){
+    var pct=Math.round((s/4)*100);
+    var tag=DIMS[i].critica?(s<2.5?"<span class='tag-fail'>crítica — abaixo do mínimo</span>":"<span class='tag-ok'>crítica — ok</span>"):"";
+    return "<div class='bar-row'><div class='bar-label'>"+DIMS[i].title+tag+"</div><div class='bar-track'><div class='bar-fill' style='width:"+pct+"%'></div></div><div class='bar-val'>"+s+"/4</div></div>";
+  }).join("");
+  var fb="";
+  if(gated){
+    fb="<div class='alerta-wrap'><div class='alerta-titulo'>⚠️ Desdobramento em metas e iniciativas abaixo do mínimo</div><div class='alerta-texto'>"+DIMS[liIdx].alerta+"<br><br>Por isso, mesmo que outras dimensões pontuem bem, o nível geral reportado fica limitado a \"Em Desenvolvimento\" — sem esse desdobramento, o planejamento não se sustenta na prática.</div></div>";
+  }
+  fb+="<div class='tcta-box'><p>Este é o terceiro diagnóstico da plataforma IME — Índice de Maturidade Executiva. Conheça os demais:</p>";
+  fb+="<div class='platform-nav'>";
+  fb+="<div class='platform-item'><a href='clareza-estrategica.html'>Clareza Estratégica — a empresa sabe para onde vai?</a><span class='platform-tag'>disponível</span></div>";
+  fb+="<div class='platform-item'><a href='maturidade-gestao.html'>Maturidade de Gestão — a empresa tem o modelo de gestão para executar?</a><span class='platform-tag'>disponível</span></div>";
+  fb+="<div class='platform-item'><a href='https://diagnostico.sebastiaonrs.com.br' target='_blank'>AI Ready — a empresa está pronta para IA?</a><span class='platform-tag'>disponível</span></div>";
+  fb+="<div class='platform-item'><span style='color:var(--slate)'>Prontidão para Transformação</span><span class='platform-tag'>em breve</span></div>";
+  fb+="</div>";
+  fb+="<p style='margin-top:16px'>Quer discutir o que este resultado significa na prática para sua empresa?</p><button class='tbtn primary' onclick=\"window.open('https://www.linkedin.com/in/sebastiao-nunes-rocha-de-souza','_blank')\">Falar com Sebastião Nunes ↗</button>";
+  fb+="<button class='treiniciar' onclick='reiniciar()'>Refazer diagnóstico</button></div>";
+  var html="<div style='text-align:center;margin-bottom:20px'><div class='r-badge' style='background:"+nv.bg+";color:"+nv.txt+"'>"+nv.label+"</div><div class='r-title'>Pontuação geral: "+media+"/4</div><div class='r-sub'>Veja abaixo o desempenho por dimensão.</div></div>";
+  html+="<div class='radar-wrap'>"+buildRadarSVG(SHORT_LABELS,scores,liIdx)+"</div>";
+  html+="<div style='margin-bottom:8px'>"+dimRows+"</div>"+fb;
+  renderTool(html);
+}
+function reiniciar(){curD=0;respostas=[];for(var i=0;i<DIMS.length;i++){respostas.push([null,null,null]);}telaIntro();}
+telaIntro();
+</script>
+</body>
+</html>
