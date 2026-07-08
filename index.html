@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -16,6 +17,7 @@
   }
   html { scroll-behavior: smooth; }
   body { font-family: var(--font-body); background: var(--navy); color: var(--ivory); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  #scroll-progress { position: fixed; top: 0; left: 0; height: 3px; width: 0%; background: linear-gradient(90deg, var(--gold), var(--gold-bright)); z-index: 200; transition: width 0.1s linear; }
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
@@ -25,12 +27,12 @@
   }
   .nav-logo { font-family: var(--font-display); font-size: 19px; font-weight: 800; color: var(--ivory-bright); letter-spacing: 0.2px; }
   .nav-logo span { color: var(--gold); }
-  .nav-links { display: flex; gap: 32px; align-items: center; }
+  .nav-links { display: flex; gap: 28px; align-items: center; }
   .nav-links a { color: var(--slate); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
   .nav-links a:hover { color: var(--gold-bright); }
   .nav-cta { border: 1px solid var(--gold); color: var(--gold-bright); padding: 8px 20px; border-radius: 6px; font-size: 13px; font-weight: 600; text-decoration: none; transition: all 0.2s; }
   .nav-cta:hover { background: var(--gold-dim); }
-  .hero { min-height: 92vh; display: flex; align-items: center; padding: 140px 48px 80px; position: relative; overflow: hidden; }
+  .hero { min-height: 88vh; display: flex; align-items: center; padding: 140px 48px 70px; position: relative; overflow: hidden; }
   .hero::before { content: ''; position: absolute; top: -240px; right: -200px; width: 800px; height: 800px; background: radial-gradient(circle, rgba(196,164,100,0.08) 0%, transparent 70%); pointer-events: none; }
   .hero-inner { max-width: 780px; margin: 0 auto; width: 100%; text-align: center; }
   .hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; background: var(--gold-dim); border: 1px solid rgba(196,164,100,0.3); color: var(--gold-bright); padding: 7px 16px; border-radius: 20px; font-size: 12px; font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 28px; }
@@ -43,18 +45,42 @@
   .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
   .btn-ghost { color: var(--slate); font-size: 14px; text-decoration: none; display: flex; align-items: center; gap: 6px; transition: color 0.2s; border-bottom: 1px solid transparent; }
   .btn-ghost:hover { color: var(--ivory-bright); border-color: var(--slate); }
-  .hero-stat-row { display: flex; gap: 40px; margin-top: 56px; padding-top: 32px; border-top: 1px solid rgba(196,164,100,0.15); justify-content: center; }
-  .hero-stat-num { font-family: var(--font-display); font-size: 30px; font-weight: 800; color: var(--gold-bright); line-height: 1; }
-  .hero-stat-label { font-size: 12.5px; color: var(--slate-dim); margin-top: 6px; }
+  /* TICKER */
+  .ticker-wrap { border-top: 1px solid rgba(196,164,100,0.15); border-bottom: 1px solid rgba(196,164,100,0.15); background: var(--navy-mid); padding: 14px 0; overflow: hidden; white-space: nowrap; }
+  .ticker-track { display: inline-block; animation: ticker-scroll 38s linear infinite; }
+  .ticker-track span { display: inline-block; padding: 0 32px; font-size: 13px; color: var(--slate); }
+  .ticker-track span strong { color: var(--gold-bright); font-weight: 700; }
+  @keyframes ticker-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
   section { padding: 100px 48px; }
   .section-inner { max-width: 1080px; margin: 0 auto; }
   .section-eyebrow { font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
   .section-title { font-family: var(--font-display); font-size: clamp(28px, 3vw, 40px); font-weight: 800; letter-spacing: -0.5px; line-height: 1.2; margin-bottom: 18px; }
   .section-sub { font-size: 16px; color: var(--slate); line-height: 1.75; max-width: 620px; }
-  .diagnosticos { background: var(--navy-mid); }
+  /* PANORAMA (bento) */
+  .panorama { background: var(--navy-mid); }
+  .panorama-intro { max-width: 680px; margin-bottom: 48px; }
+  .bento-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; grid-auto-rows: minmax(190px, auto); grid-auto-flow: dense; }
+  .bento-tile { background: var(--navy); border: 1px solid rgba(196,164,100,0.15); border-radius: 14px; padding: 26px; display: flex; flex-direction: column; justify-content: space-between; position: relative; transition: border-color 0.2s, transform 0.2s; }
+  .bento-tile.clickable { cursor: pointer; }
+  .bento-tile.clickable:hover { border-color: var(--gold); transform: translateY(-2px); }
+  .bento-tile.wide { grid-column: span 2; }
+  .bento-tile.framing { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%); }
+  .bento-num { font-family: var(--font-display); font-size: clamp(26px, 2.6vw, 34px); font-weight: 800; color: var(--gold-bright); line-height: 1; margin-bottom: 12px; }
+  .bento-text { font-size: 13.5px; color: var(--slate); line-height: 1.6; margin-bottom: 14px; }
+  .bento-source { font-size: 11px; color: var(--slate-dim); font-style: italic; }
+  .bento-tag { display: inline-flex; align-items: center; gap: 6px; font-size: 11.5px; font-weight: 600; color: var(--gold-bright); margin-top: 12px; }
+  .bento-tag::after { content: '→'; transition: transform 0.2s; }
+  .bento-tile.clickable:hover .bento-tag::after { transform: translateX(4px); }
+  @keyframes highlight-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(196,164,100,0); border-color: rgba(196,164,100,0.3); }
+    30% { box-shadow: 0 0 0 6px rgba(196,164,100,0.18); border-color: var(--gold); }
+  }
+  .diag-card.highlighted { animation: highlight-pulse 1.6s ease-out 2; }
+  /* DIAGNÓSTICOS */
+  .diagnosticos { background: var(--navy); }
   .diag-intro { max-width: 680px; margin-bottom: 56px; }
   .diag-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-  .diag-card { background: var(--navy); border: 1px solid rgba(196,164,100,0.15); border-radius: 14px; padding: 30px; position: relative; transition: border-color 0.2s, transform 0.2s; display: flex; flex-direction: column; }
+  .diag-card { background: var(--navy-mid); border: 1px solid rgba(196,164,100,0.15); border-radius: 14px; padding: 30px; position: relative; transition: border-color 0.2s, transform 0.2s; display: flex; flex-direction: column; }
   .diag-card.available { border-color: rgba(196,164,100,0.3); }
   .diag-card.available:hover { transform: translateY(-2px); border-color: var(--gold); }
   .diag-num { font-family: var(--font-display); font-size: 13px; color: var(--slate-dim); margin-bottom: 12px; letter-spacing: 0.5px; }
@@ -64,12 +90,12 @@
   .diag-status.ok { background: var(--gold-dim); color: var(--gold-bright); }
   .diag-status.soon { background: rgba(255,255,255,0.05); color: var(--slate-dim); }
   .diag-card a.diag-link { text-decoration: none; }
-  .perspectivas { text-align: center; }
+  .perspectivas { text-align: center; background: var(--navy-mid); }
   .perspectivas .section-inner { max-width: 640px; }
   .perspectivas .section-eyebrow, .perspectivas .section-title, .perspectivas .section-sub { margin-left: auto; margin-right: auto; }
   .perspectivas-empty { margin-top: 40px; padding: 40px; border: 1px dashed rgba(196,164,100,0.25); border-radius: 14px; }
   .perspectivas-empty p { font-size: 14px; color: var(--slate); line-height: 1.7; margin-bottom: 20px; }
-  .sobre { background: var(--navy-mid); }
+  .sobre { background: var(--navy); }
   .sobre-grid { display: grid; grid-template-columns: 260px 1fr; gap: 64px; align-items: start; margin-top: 56px; }
   .sobre-avatar { width: 100%; aspect-ratio: 1; border-radius: 16px; border: 1px solid rgba(196,164,100,0.2); overflow: hidden; }
   .sobre-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -85,21 +111,28 @@
   footer { background: var(--navy); border-top: 1px solid rgba(196,164,100,0.1); padding: 32px 48px; text-align: center; font-size: 13px; color: var(--slate-dim); }
   footer a { color: var(--slate); text-decoration: none; }
   footer a:hover { color: var(--gold-bright); }
+  @media (max-width: 900px) {
+    .bento-grid { grid-template-columns: repeat(2, 1fr); }
+    .bento-tile.wide { grid-column: span 2; }
+  }
   @media (max-width: 768px) {
     nav { padding: 16px 20px; }
     .nav-links { display: none; }
-    .hero { padding: 110px 20px 60px; }
+    .hero { padding: 110px 20px 50px; }
     section { padding: 64px 20px; }
     .sobre-grid { grid-template-columns: 1fr; gap: 32px; }
     .sobre-avatar { max-width: 200px; }
-    .hero-stat-row { gap: 24px; flex-wrap: wrap; }
+    .bento-grid { grid-template-columns: 1fr; }
+    .bento-tile.wide { grid-column: span 1; }
   }
 </style>
 </head>
 <body>
+<div id="scroll-progress"></div>
 <nav>
   <div class="nav-logo">Sebastião <span>Nunes</span></div>
   <div class="nav-links">
+    <a href="#panorama">Panorama</a>
     <a href="#diagnosticos">Diagnósticos</a>
     <a href="#perspectivas">Perspectivas</a>
     <a href="#sobre">Sobre</a>
@@ -116,11 +149,21 @@
       <a href="#diagnosticos" class="btn-primary">Explorar diagnósticos →</a>
       <a href="#sobre" class="btn-ghost">Conhecer o trabalho</a>
     </div>
-    <div class="hero-stat-row">
-      <div><div class="hero-stat-num">2</div><div class="hero-stat-label">diagnósticos disponíveis</div></div>
-      <div><div class="hero-stat-num">5</div><div class="hero-stat-label">diagnósticos na plataforma IME</div></div>
-      <div><div class="hero-stat-num">100%</div><div class="hero-stat-label">gratuito, sem cadastro</div></div>
+  </div>
+</section>
+
+<div class="ticker-wrap">
+  <div class="ticker-track" id="ticker-track"></div>
+</div>
+
+<section class="panorama" id="panorama">
+  <div class="section-inner">
+    <div class="section-eyebrow">Panorama 2026</div>
+    <div class="panorama-intro">
+      <h2 class="section-title">O que os dados revelam sobre a maturidade das organizações hoje</h2>
+      <p class="section-sub">Cada sinal abaixo aponta para uma pergunta que a maioria das empresas ainda não sabe responder com clareza. Clique em um deles para ver qual diagnóstico da plataforma investiga esse ponto.</p>
     </div>
+    <div class="bento-grid" id="bento-grid"></div>
   </div>
 </section>
 
@@ -132,31 +175,31 @@
       <p class="section-sub">Cada diagnóstico responde a uma pergunta central sobre a maturidade da empresa. Juntos, formam um mapa completo — da clareza estratégica à capacidade de execução e mudança.</p>
     </div>
     <div class="diag-grid">
-      <div class="diag-card available">
+      <div class="diag-card available" id="diag-clareza-estrategica">
         <div class="diag-num">Diagnóstico 01</div>
         <div class="diag-title">Clareza Estratégica</div>
         <div class="diag-question">A empresa sabe para onde vai?</div>
         <a class="diag-link" href="clareza-estrategica.html"><span class="diag-status ok">Disponível →</span></a>
       </div>
-      <div class="diag-card">
+      <div class="diag-card" id="diag-maturidade-gestao">
         <div class="diag-num">Diagnóstico 02</div>
         <div class="diag-title">Maturidade de Gestão</div>
         <div class="diag-question">A empresa tem o modelo de gestão para executar?</div>
         <span class="diag-status soon">Em breve</span>
       </div>
-      <div class="diag-card">
+      <div class="diag-card" id="diag-planejamento">
         <div class="diag-num">Diagnóstico 03</div>
         <div class="diag-title">Maturidade em Planejamento Estratégico</div>
         <div class="diag-question">A empresa transforma visão em planos executáveis?</div>
         <span class="diag-status soon">Em breve</span>
       </div>
-      <div class="diag-card">
+      <div class="diag-card" id="diag-transformacao">
         <div class="diag-num">Diagnóstico 04</div>
         <div class="diag-title">Prontidão para Transformação</div>
         <div class="diag-question">A empresa consegue mudar quando precisa?</div>
         <span class="diag-status soon">Em breve</span>
       </div>
-      <div class="diag-card available">
+      <div class="diag-card available" id="diag-ai-ready">
         <div class="diag-num">Diagnóstico 05</div>
         <div class="diag-title">AI Ready</div>
         <div class="diag-question">A empresa está pronta para implantar IA?</div>
@@ -214,5 +257,52 @@
 <footer>
   <p>© 2026 Sebastião Nunes · <a href="https://www.linkedin.com/in/sebastiao-nunes-rocha-de-souza" target="_blank">LinkedIn</a></p>
 </footer>
+
+<script>
+// ===== Dados do Panorama (fontes verificadas) =====
+var PANORAMA=[
+  {framing:true,num:"62%",text:"das empresas brasileiras não sobrevivem aos primeiros 5 anos de vida — e a velocidade de mudança do ambiente de negócios só aumenta a pressão sobre as que ficam.",source:"IBGE, Demografia das Empresas 2022",wide:true},
+  {num:"59%",text:"dos funcionários não conseguem dizer com clareza o que a empresa representa nem o que a diferencia da concorrência — trabalham todos os dias sem essa bússola.",source:"Gallup",target:"diag-clareza-estrategica",tag:"Diagnóstico: Clareza Estratégica"},
+  {num:"19%",text:"das empresas familiares brasileiras chegam à terceira geração — mesmo respondendo por 65% do PIB nacional. E a geração que herdaria a liderança está cada vez mais relutante em assumi-la: 52% dos profissionais da Geração Z não querem se tornar gestores.",source:"PwC Global Family Business Index; Robert Walters, Conscious Unbossing",target:"diag-maturidade-gestao",tag:"Diagnóstico: Maturidade de Gestão",wide:true},
+  {num:"~28%",text:"dos projetos não entregam o resultado de negócio esperado, mesmo quando bem gerenciados.",source:"PMI, Pulse of the Profession 2025",target:"diag-planejamento",tag:"Diagnóstico: Planejamento Estratégico"},
+  {num:"26%",text:"das transformações corporativas sustentam a melhoria de performance ao longo do tempo — a esmagadora maioria não segura o ganho. Projetos de ERP e digitalização seguem o mesmo padrão.",source:"McKinsey & Company, Losing From Day One",target:"diag-transformacao",tag:"Diagnóstico: Prontidão para Transformação",wide:true},
+  {num:"80%",text:"dos projetos de inteligência artificial falham — o dobro da taxa de fracasso de projetos de TI tradicionais.",source:"RAND Corporation (2024)",target:"diag-ai-ready",tag:"Diagnóstico: AI Ready"}
+];
+function renderBento(){
+  var html="";
+  PANORAMA.forEach(function(p){
+    var cls="bento-tile"+(p.wide?" wide":"")+(p.framing?" framing":"")+(p.target?" clickable":"");
+    html+="<div class='"+cls+"'"+(p.target?" data-target='"+p.target+"'":"")+">";
+    html+="<div><div class='bento-num'>"+p.num+"</div><div class='bento-text'>"+p.text+"</div></div>";
+    html+="<div><div class='bento-source'>"+p.source+"</div>"+(p.tag?"<div class='bento-tag'>"+p.tag+"</div>":"")+"</div>";
+    html+="</div>";
+  });
+  document.getElementById("bento-grid").innerHTML=html;
+  document.querySelectorAll(".bento-tile.clickable").forEach(function(el){
+    el.addEventListener("click",function(){
+      var targetEl=document.getElementById(this.dataset.target);
+      if(!targetEl)return;
+      targetEl.scrollIntoView({behavior:"smooth",block:"center"});
+      targetEl.classList.add("highlighted");
+      setTimeout(function(){targetEl.classList.remove("highlighted");},3200);
+    });
+  });
+}
+renderBento();
+// ===== Ticker =====
+function renderTicker(){
+  var items=PANORAMA.map(function(p){return "<span><strong>"+p.num+"</strong> "+p.text.split(".")[0]+" — "+p.source+"</span>";}).join("");
+  document.getElementById("ticker-track").innerHTML=items+items;
+}
+renderTicker();
+// ===== Scroll progress =====
+function updateProgress(){
+  var h=document.documentElement;
+  var scrolled=(h.scrollTop)/(h.scrollHeight-h.clientHeight)*100;
+  document.getElementById("scroll-progress").style.width=scrolled+"%";
+}
+window.addEventListener("scroll",updateProgress);
+updateProgress();
+</script>
 </body>
 </html>
