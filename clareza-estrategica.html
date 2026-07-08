@@ -4,8 +4,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Maturidade de Gestão — Diagnóstico IME | Sebastião Nunes</title>
-<meta name="description" content="Diagnóstico gratuito: sua empresa tem o modelo de gestão para executar? Avalie em 7 dimensões a maturidade de gestão da sua organização. Resultado imediato, sem cadastro.">
+<title>Clareza Estratégica — Diagnóstico IME | Sebastião Nunes</title>
+<meta name="description" content="Diagnóstico gratuito: sua empresa sabe para onde vai? Avalie em 7 dimensões o nível de clareza estratégica da sua organização. Resultado imediato, sem cadastro.">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -55,6 +55,11 @@
   .r-badge { display: inline-block; padding: 6px 20px; border-radius: 20px; font-size: 13px; font-weight: 600; margin-bottom: 12px; }
   .r-title { font-size: 24px; font-weight: 700; margin-bottom: 8px; font-family: var(--font-display); }
   .r-sub { font-size: 14px; color: var(--slate); line-height: 1.7; margin-bottom: 24px; }
+  .bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .bar-label { font-size: 13px; color: var(--slate); width: 210px; flex-shrink: 0; }
+  .bar-track { flex: 1; height: 8px; background: rgba(255,255,255,0.06); border-radius: 4px; overflow: hidden; }
+  .bar-fill { height: 8px; border-radius: 4px; background: var(--gold); }
+  .bar-val { font-size: 12px; color: var(--slate-dim); width: 34px; text-align: right; }
   .radar-wrap { display: flex; justify-content: center; margin: 16px 0 24px; }
   .radar-svg { width: 100%; max-width: 320px; height: auto; overflow: visible; }
   .radar-grid { fill: none; stroke: rgba(255,255,255,0.10); stroke-width: 1; }
@@ -64,11 +69,6 @@
   .radar-dot-critical { fill: var(--danger-text); stroke: var(--navy); stroke-width: 1; }
   .radar-label { font-family: var(--font-body); font-size: 10.5px; fill: var(--slate); }
   .radar-label-critical { fill: var(--danger-text); font-weight: 600; }
-  .bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
-  .bar-label { font-size: 13px; color: var(--slate); width: 210px; flex-shrink: 0; }
-  .bar-track { flex: 1; height: 8px; background: rgba(255,255,255,0.06); border-radius: 4px; overflow: hidden; }
-  .bar-fill { height: 8px; border-radius: 4px; background: var(--gold); }
-  .bar-val { font-size: 12px; color: var(--slate-dim); width: 34px; text-align: right; }
   .tag-fail { font-size: 11px; padding: 1px 8px; border-radius: 20px; background: var(--danger-dim); color: var(--danger-text); margin-left: 6px; font-weight: 500; }
   .tag-ok { font-size: 11px; padding: 1px 8px; border-radius: 20px; background: var(--gold-dim); color: var(--gold-bright); margin-left: 6px; font-weight: 500; }
   .alerta-wrap { background: var(--danger-dim); border: 1px solid rgba(226,115,75,0.3); border-radius: 10px; padding: 18px; margin: 16px 0; }
@@ -81,10 +81,10 @@
   .tcta-box p { font-size: 13px; color: var(--slate); margin-bottom: 16px; line-height: 1.6; }
   .treiniciar { margin-top: 14px; font-size: 12px; color: var(--slate-dim); cursor: pointer; background: none; border: none; text-decoration: underline; display: block; margin-left: auto; margin-right: auto; font-family: var(--font-body); }
   .platform-nav { display: flex; flex-direction: column; gap: 8px; margin-top: 18px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.08); }
-  .platform-item { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; border-radius: 8px; background: rgba(255,255,255,0.02); font-size: 13px; gap: 12px; }
+  .platform-item { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; border-radius: 8px; background: rgba(255,255,255,0.02); font-size: 13px; }
   .platform-item a { color: var(--gold-bright); text-decoration: none; font-weight: 600; }
   .platform-item a:hover { text-decoration: underline; }
-  .platform-tag { font-size: 11px; color: var(--slate-dim); flex-shrink: 0; }
+  .platform-tag { font-size: 11px; color: var(--slate-dim); }
   footer { text-align: center; margin-top: 28px; font-size: 12px; color: var(--slate-dim); }
   footer a { color: var(--slate); text-decoration: none; }
   footer a:hover { color: var(--gold-bright); }
@@ -99,8 +99,8 @@
 <div class="page-wrap">
   <div class="page-header">
     <div class="page-eyebrow">IME · Índice de Maturidade Executiva</div>
-    <div class="page-title">Maturidade de Gestão</div>
-    <p class="page-sub">A empresa tem o modelo de gestão para executar? Um diagnóstico de 7 dimensões para revelar o quanto a estrutura, o ritmo e a governança da empresa sustentam a execução do dia a dia.</p>
+    <div class="page-title">Clareza Estratégica</div>
+    <p class="page-sub">A empresa sabe para onde vai? Um diagnóstico de 7 dimensões para revelar o quanto sua estratégia é clara, compartilhada e consistente.</p>
   </div>
   <div class="tool-wrapper">
     <div class="tool-body" id="tool-root"></div>
@@ -108,7 +108,52 @@
   <footer>© 2026 Sebastião Nunes · <a href="https://www.linkedin.com/in/sebastiao-nunes-rocha-de-souza" target="_blank">LinkedIn</a> · <a href="index.html">sebastiaonrs.com.br</a></footer>
 </div>
 <script>
-var SHORT_LABELS=["Estrutura","Cultura","Ritmo","Orçamento","Decisão","Governança","Indicadores"];
+var DIMS=[
+  {id:"proposito",title:"Propósito e Visão",desc:"Por que a empresa existe e onde quer chegar?",icon:"🧭",critica:false,
+    perguntas:[
+      {text:"A empresa tem uma declaração de propósito/visão formalizada?",opts:["Não existe visão declarada ou ela é ignorada no dia a dia.","Existe uma visão declarada, mas pouco lida ou aplicada.","A visão é conhecida pela liderança e referenciada ocasionalmente em decisões.","A visão é referência ativa em decisões estratégicas e reconhecida por toda a organização."]},
+      {text:"Quando questionados separadamente, os principais executivos descrevem o propósito da empresa...",opts:["De formas claramente diferentes e às vezes contraditórias.","De formas parecidas, mas com ênfases distintas.","De forma consistente, com pequenas variações de linguagem.","De forma praticamente idêntica, com a mesma essência."]},
+      {text:"A visão de longo prazo da empresa é revisitada...",opts:["Nunca, ou apenas quando exigido por processo formal burocrático.","Esporadicamente, sem cadência definida.","Anualmente, como parte do ciclo de planejamento.","Regularmente, e usada como critério ativo de avaliação de novas iniciativas."]}
+    ]},
+  {id:"direcionamento",title:"Direcionamento Estratégico",desc:"As prioridades e pilares estão definidos?",icon:"🎯",critica:false,
+    perguntas:[
+      {text:"As prioridades estratégicas da empresa para os próximos 2-3 anos estão...",opts:["Não definidas ou definidas apenas informalmente.","Definidas, mas de forma genérica (\"crescer\", \"inovar\"), sem detalhamento.","Definidas com objetivos específicos, mas nem todos mensuráveis.","Definidas com objetivos específicos, mensuráveis e com donos claros."]},
+      {text:"Quando um novo projeto ou investimento é proposto, a organização avalia sua aderência à estratégia...",opts:["Raramente ou nunca — decisões são tomadas caso a caso.","De forma informal, dependendo de quem está decidindo.","Com um processo estabelecido, mas nem sempre seguido.","Com um processo estabelecido e consistentemente aplicado."]},
+      {text:"Os pilares estratégicos da empresa foram definidos...",opts:["Não existem pilares estratégicos definidos.","Existem, mas foram copiados/herdados sem adaptação à realidade da empresa.","Foram definidos com análise própria, mas sem revisão desde então.","Foram definidos com análise rigorosa e são revisados periodicamente."]}
+    ]},
+  {id:"posicionamento",title:"Posicionamento Competitivo",desc:"A diferenciação frente à concorrência é clara?",icon:"♟️",critica:false,
+    perguntas:[
+      {text:"A proposta de valor da empresa frente aos concorrentes é...",opts:["Não está clara nem para a liderança.","Está clara para a liderança, mas não é comunicada de forma consistente.","Está clara e comunicada, mas pouco diferenciada de concorrentes.","Está clara, comunicada e genuinamente diferenciada no mercado."]},
+      {text:"A empresa monitora ativamente o posicionamento dos concorrentes...",opts:["Não monitora ou monitora de forma esporádica/informal.","Monitora informalmente, sem processo estruturado.","Tem um processo estruturado, mas usado de forma reativa.","Tem um processo estruturado e usa a informação proativamente nas decisões."]},
+      {text:"Se perguntado a um cliente por que ele escolhe a empresa em vez de um concorrente, a liderança...",opts:["Não sabe responder com confiança.","Tem uma hipótese, mas nunca validou com clientes reais.","Tem uma resposta validada, mas desatualizada.","Tem uma resposta clara, validada e atualizada continuamente."]}
+    ]},
+  {id:"lideranca",title:"Alinhamento da Liderança",desc:"O time executivo compartilha o mesmo entendimento?",icon:"🤝",critica:true,
+    alerta:"Sem alinhamento entre os membros da liderança, nenhuma outra dimensão sustenta maturidade real. É o padrão de falha estratégica mais comum e mais silencioso em empresas brasileiras: discurso comum no papel, divergência real na hora de decidir.",
+    perguntas:[
+      {text:"Os membros da liderança, quando questionados individualmente sobre as prioridades da empresa...",opts:["Dão respostas claramente diferentes entre si.","Têm um discurso comum, mas divergem quando decisões concretas precisam ser tomadas.","Estão alinhados na maior parte das decisões, com raras exceções.","Demonstram alinhamento consistente, inclusive sob pressão ou em decisões de trade-off."]},
+      {text:"Diante de uma decisão estratégica difícil (cortar um produto, mudar de mercado), a liderança...",opts:["Frequentemente trava por falta de consenso ou disputas de poder.","Chega a um consenso, mas com desgaste e demora significativos.","Chega a um consenso de forma relativamente ágil na maioria das vezes.","Decide de forma ágil e alinhada, mesmo em temas sensíveis."]},
+      {text:"Conflitos entre áreas sobre prioridades estratégicas são...",opts:["Frequentes e não resolvidos, gerando trabalho duplicado ou contraditório.","Frequentes, mas resolvidos caso a caso pela hierarquia.","Raros, pois há entendimento comum sobre prioridades.","Praticamente inexistentes, pois a estratégia funciona como critério compartilhado de decisão."]}
+    ]},
+  {id:"disseminacao",title:"Disseminação e Compreensão",desc:"A estratégia é conhecida além do C-level?",icon:"📣",critica:false,
+    perguntas:[
+      {text:"Se perguntado a um gerente de nível médio qual é a estratégia da empresa, ele...",opts:["Não saberia responder ou daria uma resposta genérica.","Saberia responder parcialmente, com lacunas relevantes.","Saberia responder com razoável precisão.","Saberia responder com precisão e conectar ao seu trabalho diário."]},
+      {text:"A estratégia da empresa é comunicada aos times...",opts:["Não é comunicada de forma estruturada.","É comunicada uma vez (ex: reunião anual), sem reforço.","É comunicada e reforçada periodicamente.","É comunicada, reforçada e traduzida em metas específicas para cada time."]},
+      {text:"Colaboradores conseguem explicar como o trabalho deles contribui para a estratégia da empresa...",opts:["Não, a maioria não vê conexão entre seu trabalho e a estratégia.","Apenas lideranças conseguem fazer essa conexão.","A maioria dos gestores consegue, mas não os times operacionais.","A maioria dos colaboradores, em todos os níveis, consegue fazer essa conexão."]}
+    ]},
+  {id:"foco",title:"Foco e Priorização",desc:"A empresa consegue dizer não e evitar dispersão?",icon:"🔍",critica:false,
+    perguntas:[
+      {text:"Quando surgem oportunidades atrativas fora do escopo estratégico definido, a empresa...",opts:["Costuma persegui-las mesmo assim, gerando dispersão frequente.","Às vezes persegue, dependendo de quem propõe ou pressiona.","Avalia com critério, mas ocasionalmente cede à dispersão.","Avalia com critério rigoroso e recusa com disciplina o que foge do foco."]},
+      {text:"O número de iniciativas estratégicas em andamento simultaneamente é...",opts:["Muito alto, sem capacidade real de acompanhar todas.","Alto, com sobrecarga perceptível das equipes.","Administrável, com atenção adequada à maioria.","Calibrado à capacidade real de execução da organização."]},
+      {text:"Decisões de \"parar de fazer algo\" (descontinuar produtos, projetos, mercados) são...",opts:["Raras — a empresa tende a acumular iniciativas sem encerrar as antigas.","Acontecem, mas de forma reativa a crises.","Acontecem como parte do planejamento, mas com resistência.","Fazem parte natural da disciplina estratégica da empresa."]}
+    ]},
+  {id:"consistencia",title:"Consistência ao Longo do Tempo",desc:"A estratégia se mantém estável diante de pressões?",icon:"⏳",critica:false,
+    perguntas:[
+      {text:"Nos últimos 2-3 anos, as prioridades estratégicas da empresa...",opts:["Mudaram com frequência, sem lógica clara de continuidade.","Mudaram algumas vezes, geralmente por pressão externa.","Se mantiveram em geral, com ajustes pontuais justificados.","Se mantiveram coerentes, com evolução clara e intencional."]},
+      {text:"Trocas de liderança (executivos, diretores) na empresa costumam...",opts:["Provocar mudanças bruscas de direção estratégica.","Gerar alguma instabilidade nas prioridades por um período.","Ter impacto limitado na estratégia geral.","Não afetar a coerência estratégica, que é maior que qualquer indivíduo."]},
+      {text:"Comparando o discurso estratégico da empresa hoje com o de dois anos atrás, percebe-se...",opts:["Pouca ou nenhuma relação entre os dois.","Alguma relação, mas com mudanças relevantes de direção.","Uma evolução natural, mantendo a essência.","Uma continuidade clara, com aprofundamento e refinamento ao longo do tempo."]}
+    ]}
+];
+var SHORT_LABELS=["Propósito","Direcionamento","Posicionamento","Liderança","Disseminação","Foco","Consistência"];
 function buildRadarSVG(labels,scores,criticalIdx){
   var n=labels.length;
   var size=320,center=size/2,maxR=center-72;
@@ -139,51 +184,6 @@ function buildRadarSVG(labels,scores,criticalIdx){
   svg+="</svg>";
   return svg;
 }
-var DIMS=[
-  {id:"estrutura",title:"Estrutura Organizacional",desc:"Papéis, responsabilidades e hierarquia são claros?",icon:"🏗️",critica:false,
-    perguntas:[
-      {text:"A estrutura organizacional da empresa (papéis, níveis hierárquicos, áreas) é:",opts:["Confusa ou informal — pessoas acumulam funções sem definição clara.","Existe um organograma, mas não reflete como o trabalho realmente acontece.","É clara e usada no dia a dia, com pequenos ajustes pontuais.","É clara, atualizada e revisada conforme a empresa cresce ou muda de estratégia."]},
-      {text:"Quando um problema surge, geralmente fica claro quem é o responsável por resolvê-lo?",opts:["Não, há confusão frequente sobre \"de quem é isso\".","Às vezes, depende do tipo de problema.","Na maioria das vezes, sim.","Sim, a responsabilidade é sempre clara, mesmo em temas novos ou ambíguos."]},
-      {text:"O número de camadas hierárquicas entre a liderança e a operação é:",opts:["Excessivo, gerando lentidão e distorção de informação.","Alto, mas funcional na maior parte do tempo.","Adequado ao porte da empresa, com raras exceções.","Calibrado deliberadamente, revisado quando a empresa muda de escala."]}
-    ]},
-  {id:"cultura",title:"Cultura de Performance",desc:"Desempenho gera consequência e reconhecimento?",icon:"🏆",critica:false,
-    perguntas:[
-      {text:"As expectativas de desempenho para cada função são:",opts:["Não definidas ou vagas.","Definidas informalmente, variando por gestor.","Formalizadas, mas nem sempre acompanhadas de perto.","Formalizadas, comunicadas e acompanhadas de forma consistente."]},
-      {text:"Diferenças de desempenho entre colaboradores/times geram consequências (reconhecimento, desenvolvimento ou correção)?",opts:["Não — bons e maus desempenhos são tratados da mesma forma.","Ocasionalmente, dependendo do gestor.","Na maioria dos casos, sim.","Sim, de forma sistemática e percebida como justa pela maioria."]},
-      {text:"Colaboradores de alta performance tendem a:",opts:["Sair da empresa por falta de reconhecimento ou oportunidade.","Ficar, mas sem grande diferenciação em relação aos demais.","Ser reconhecidos, com alguma diferenciação de carreira ou remuneração.","Ter trajetórias claramente aceleradas e serem retidos ativamente."]}
-    ]},
-  {id:"ritmo",title:"Ritmo de Gestão",desc:"A cadência de acompanhamento sustenta a execução?",icon:"⏱️",critica:false,
-    perguntas:[
-      {text:"As reuniões de acompanhamento de resultados (revisões, comitês) acontecem:",opts:["De forma esporádica ou apenas quando há problema.","Existem, mas sem cadência fixa ou frequentemente canceladas.","Com cadência regular, na maioria das vezes.","Com cadência regular, disciplinada e raramente interrompida."]},
-      {text:"Decisões tomadas em reuniões de gestão:",opts:["Frequentemente não saem do papel.","Às vezes são implementadas, às vezes se perdem.","Geralmente são implementadas, com acompanhamento.","São sistematicamente registradas, atribuídas e cobradas até a conclusão."]},
-      {text:"O tempo entre identificar um problema de performance e agir sobre ele é:",opts:["Longo — meses, às vezes sem ação nenhuma.","Variável, depende de quem percebe o problema.","Razoavelmente rápido, dentro de semanas.","Rápido e consistente, parte da rotina de gestão."]}
-    ]},
-  {id:"orcamento",title:"Gestão Orçamentária e Custos",desc:"Há disciplina financeira e previsibilidade?",icon:"💰",critica:false,
-    perguntas:[
-      {text:"O orçamento anual da empresa é:",opts:["Inexistente ou feito de forma muito superficial.","Existe, mas raramente usado para decisões ao longo do ano.","Usado como referência, com revisões periódicas.","Usado ativamente, com revisões frequentes e disciplina de execução."]},
-      {text:"Desvios entre o orçado e o realizado são:",opts:["Não acompanhados de forma sistemática.","Acompanhados, mas sem ação clara quando ocorrem.","Acompanhados e geram ajustes na maioria dos casos.","Acompanhados de perto, com ação corretiva rápida e disciplinada."]},
-      {text:"Decisões de corte ou redução de custos, quando necessárias, são:",opts:["Feitas de forma genérica (\"cortar tudo em X%\"), sem critério estratégico.","Feitas com algum critério, mas de forma reativa.","Feitas com análise, priorizando o que menos afeta o essencial.","Feitas com critério estratégico claro, preservando prioridades definidas."]}
-    ]},
-  {id:"decisao",title:"Tomada de Decisão",desc:"As decisões são ágeis, claras e bem fundamentadas?",icon:"🧩",critica:false,
-    perguntas:[
-      {text:"Decisões importantes na empresa costumam ser tomadas:",opts:["De forma lenta, com muitas idas e vindas ou aprovações redundantes.","Em tempo razoável, mas com fricção considerável.","Em tempo adequado na maioria dos casos.","Com agilidade, sem abrir mão da qualidade da decisão."]},
-      {text:"Está claro, para a maioria dos temas, quem tem autonomia para decidir sem precisar escalar?",opts:["Não, quase tudo escala para o topo.","Parcialmente, depende da pessoa e do momento.","Sim, para a maioria dos temas operacionais.","Sim, com autonomia bem calibrada em todos os níveis relevantes."]},
-      {text:"As decisões tomadas costumam ser baseadas em:",opts:["Intuição ou opinião de quem tem mais poder na sala.","Uma mistura de dados e intuição, sem padrão claro.","Dados e análise na maioria das vezes.","Dados e análise, de forma consistente e disciplinada."]}
-    ]},
-  {id:"governanca",title:"Governança Corporativa",desc:"Conselho, transparência e prestação de contas funcionam?",icon:"⚖️",critica:true,
-    alerta:"Sem governança efetiva — conselho atuante, separação clara entre propriedade e gestão, transparência de informação — nenhuma outra dimensão de gestão se sustenta no longo prazo. É o padrão por trás da estatística mais dura sobre empresas familiares brasileiras: apenas 19% chegam à terceira geração, mesmo respondendo por 65% do PIB nacional. Governança fraca hoje é crise de sucessão amanhã.",
-    perguntas:[
-      {text:"A empresa tem um conselho de administração ou consultivo com papel efetivo (não apenas formal)?",opts:["Não existe ou é puramente formal, sem influência real nas decisões.","Existe, mas com pouca informação ou pouca cobrança sobre a gestão.","Existe e exerce influência real na maioria das decisões relevantes.","Existe, é ativo, bem informado, e contribui de forma consistente para a qualidade das decisões."]},
-      {text:"A separação entre propriedade (sócios/família) e gestão do dia a dia é:",opts:["Inexistente — sócios/família interferem diretamente na operação sem processo claro.","Parcial, com interferências frequentes fora de canais formais.","Razoavelmente clara, com poucas exceções.","Clara, formalizada e respeitada por todos os envolvidos."]},
-      {text:"Informações relevantes sobre a saúde da empresa (financeira, riscos, compliance) são:",opts:["Concentradas informalmente com poucas pessoas, sem transparência.","Compartilhadas parcialmente, de forma inconsistente.","Compartilhadas de forma estruturada com quem precisa saber.","Compartilhadas de forma transparente, com processos formais de prestação de contas."]}
-    ]},
-  {id:"indicadores",title:"Indicadores e Controle de Gestão",desc:"A empresa mede e usa dados para decidir?",icon:"📊",critica:false,
-    perguntas:[
-      {text:"A empresa acompanha o desempenho do negócio por meio de indicadores (KPIs) claramente definidos?",opts:["Não, ou de forma muito básica/isolada.","Existem indicadores, mas dispersos ou pouco confiáveis.","Existem indicadores confiáveis, revisados periodicamente.","Existem indicadores confiáveis, integrados e usados ativamente na tomada de decisão."]},
-      {text:"Os relatórios/dashboards de gestão chegam a quem precisa deles:",opts:["Raramente, ou de forma muito atrasada para serem úteis.","Às vezes, com atraso relevante.","Na maioria das vezes, em tempo hábil.","Sempre, em tempo hábil e no formato certo para cada nível de decisão."]},
-      {text:"Quando um indicador foge do esperado, a empresa:",opts:["Frequentemente não percebe a tempo.","Percebe, mas demora a agir.","Percebe e age na maioria dos casos.","Percebe rapidamente e tem um processo claro de resposta."]}
-    ]}
-];
 var curD=0;
 var respostas=[];
 for(var i=0;i<DIMS.length;i++){respostas.push([null,null,null]);}
@@ -194,7 +194,7 @@ function telaIntro(){
   html+="<div class='intro-list'>";
   html+="<div class='intro-item'><div class='intro-dot'></div>7 dimensões, 3 perguntas cada — cerca de 10 minutos.</div>";
   html+="<div class='intro-item'><div class='intro-dot'></div>Escolha a afirmação mais próxima da realidade da sua empresa, não a ideal.</div>";
-  html+="<div class='intro-item'><div class='intro-dot'></div>O resultado aparece imediatamente na tela ao final, com gráfico radar por dimensão.</div>";
+  html+="<div class='intro-item'><div class='intro-dot'></div>O resultado aparece imediatamente na tela ao final.</div>";
   html+="</div>";
   html+="<div class='intro-privacy'><strong>Privacidade:</strong> este diagnóstico não pede nome, e-mail ou empresa, e nenhuma resposta é armazenada em servidor algum. Todo o cálculo acontece no seu navegador — ao fechar a página, nada permanece.</div>";
   html+="<div class='tnav'><div></div><button class='tbtn primary' id='btn-intro-next'>Iniciar diagnóstico →</button></div>";
@@ -244,9 +244,9 @@ function nivelInfo(sc){
 function mostrarResultado(){
   var scores=DIMS.map(function(_,i){return dimScore(i);});
   var media=Math.round((scores.reduce(function(a,b){return a+b;},0)/scores.length)*10)/10;
-  var gIdx=DIMS.findIndex(function(d){return d.critica;});
-  var gScore=scores[gIdx];
-  var gated=gScore<2.5;
+  var liIdx=DIMS.findIndex(function(d){return d.critica;});
+  var liScore=scores[liIdx];
+  var gated=liScore<2.5;
   var nv=nivelInfo(media);
   if(gated&&media>=3.2){nv=nivelInfo(3.1);} // aplica o teto de "Em Desenvolvimento"
   var dimRows=scores.map(function(s,i){
@@ -256,19 +256,19 @@ function mostrarResultado(){
   }).join("");
   var fb="";
   if(gated){
-    fb="<div class='alerta-wrap'><div class='alerta-titulo'>⚠️ Governança corporativa abaixo do mínimo</div><div class='alerta-texto'>"+DIMS[gIdx].alerta+"<br><br>Por isso, mesmo que outras dimensões pontuem bem, o nível geral reportado fica limitado a \"Em Desenvolvimento\" — sem governança efetiva, a maturidade de gestão não se sustenta na prática.</div></div>";
+    fb="<div class='alerta-wrap'><div class='alerta-titulo'>⚠️ Alinhamento da liderança abaixo do mínimo</div><div class='alerta-texto'>"+DIMS[liIdx].alerta+"<br><br>Por isso, mesmo que outras dimensões pontuem bem, o nível geral reportado fica limitado a \"Em Desenvolvimento\" — sem esse alinhamento, a clareza estratégica não se sustenta na prática.</div></div>";
   }
-  fb+="<div class='tcta-box'><p>Este é o segundo diagnóstico da plataforma IME — Índice de Maturidade Executiva. Conheça os demais:</p>";
+  fb+="<div class='tcta-box'><p>Este é o primeiro diagnóstico da plataforma IME — Índice de Maturidade Executiva. Conheça os demais:</p>";
   fb+="<div class='platform-nav'>";
-  fb+="<div class='platform-item'><a href='clareza-estrategica.html'>Clareza Estratégica — a empresa sabe para onde vai?</a><span class='platform-tag'>disponível</span></div>";
   fb+="<div class='platform-item'><a href='https://diagnostico.sebastiaonrs.com.br' target='_blank'>AI Ready — a empresa está pronta para IA?</a><span class='platform-tag'>disponível</span></div>";
-  fb+="<div class='platform-item'><span style='color:var(--slate)'>Maturidade em Planejamento Estratégico</span><span class='platform-tag'>em breve</span></div>";
+  fb+="<div class='platform-item'><a href='maturidade-gestao.html'>Maturidade de Gestão — a empresa tem o modelo de gestão para executar?</a><span class='platform-tag'>disponível</span></div>";
+  fb+="<div class='platform-item'><a href='planejamento-estrategico.html'>Planejamento Estratégico — a empresa transforma visão em planos executáveis?</a><span class='platform-tag'>disponível</span></div>";
   fb+="<div class='platform-item'><span style='color:var(--slate)'>Prontidão para Transformação</span><span class='platform-tag'>em breve</span></div>";
   fb+="</div>";
   fb+="<p style='margin-top:16px'>Quer discutir o que este resultado significa na prática para sua empresa?</p><button class='tbtn primary' onclick=\"window.open('https://www.linkedin.com/in/sebastiao-nunes-rocha-de-souza','_blank')\">Falar com Sebastião Nunes ↗</button>";
   fb+="<button class='treiniciar' onclick='reiniciar()'>Refazer diagnóstico</button></div>";
   var html="<div style='text-align:center;margin-bottom:20px'><div class='r-badge' style='background:"+nv.bg+";color:"+nv.txt+"'>"+nv.label+"</div><div class='r-title'>Pontuação geral: "+media+"/4</div><div class='r-sub'>Veja abaixo o desempenho por dimensão.</div></div>";
-  html+="<div class='radar-wrap'>"+buildRadarSVG(SHORT_LABELS,scores,gIdx)+"</div>";
+  html+="<div class='radar-wrap'>"+buildRadarSVG(SHORT_LABELS,scores,liIdx)+"</div>";
   html+="<div style='margin-bottom:8px'>"+dimRows+"</div>"+fb;
   renderTool(html);
 }
