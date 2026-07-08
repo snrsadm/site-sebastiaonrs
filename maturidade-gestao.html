@@ -45,6 +45,8 @@
   .tbtn:hover { background: rgba(255,255,255,0.09); color: var(--ivory-bright); }
   .tbtn.primary { background: var(--gold); color: var(--navy); border-color: var(--gold); font-weight: 700; }
   .tbtn.primary:hover { opacity: 0.88; }
+  .tbtn.outline { background: transparent; color: var(--gold-bright); border-color: rgba(196,164,100,0.4); }
+  .tbtn.outline:hover { background: var(--gold-dim2); color: var(--gold-bright); }
   .tbtn:disabled { opacity: 0.3; cursor: not-allowed; }
   .step-ind { font-size: 12px; color: var(--slate-dim); }
   .intro-list { display: flex; flex-direction: column; gap: 10px; margin: 22px 0 28px; }
@@ -64,11 +66,27 @@
   .radar-dot-critical { fill: var(--danger-text); stroke: var(--navy); stroke-width: 1; }
   .radar-label { font-family: var(--font-body); font-size: 10.5px; fill: var(--slate); }
   .radar-label-critical { fill: var(--danger-text); font-weight: 600; }
-  .bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .bar-block { margin-bottom: 15px; }
+  .bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 5px; }
   .bar-label { font-size: 13px; color: var(--slate); width: 210px; flex-shrink: 0; }
   .bar-track { flex: 1; height: 8px; background: rgba(255,255,255,0.06); border-radius: 4px; overflow: hidden; }
   .bar-fill { height: 8px; border-radius: 4px; background: var(--gold); }
   .bar-val { font-size: 12px; color: var(--slate-dim); width: 34px; text-align: right; }
+  .bar-note { font-size: 12px; color: var(--slate-dim); line-height: 1.55; padding-left: 2px; }
+  .exec-summary { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.07); border-radius: 10px; padding: 20px; margin: 18px 0; }
+  .exec-label { font-size: 11px; font-weight: 600; letter-spacing: 0.6px; text-transform: uppercase; color: var(--slate-dim); margin-bottom: 12px; }
+  .exec-summary p { font-size: 13.5px; color: var(--ivory); line-height: 1.75; margin-bottom: 10px; }
+  .exec-summary p:last-child { margin-bottom: 0; }
+  .exec-summary strong { color: var(--gold-bright); }
+  .prior-wrap { background: rgba(255,255,255,0.03); border: 1px solid rgba(196,164,100,0.25); border-radius: 10px; padding: 18px; margin: 18px 0; }
+  .prior-titulo { font-size: 14px; font-weight: 600; color: var(--gold-bright); margin-bottom: 6px; }
+  .prior-texto { font-size: 13px; color: var(--slate); margin-bottom: 14px; line-height: 1.6; }
+  .prior-item { background: rgba(255,255,255,0.03); border-left: 3px solid var(--gold); border-radius: 6px; padding: 10px 14px; margin-bottom: 8px; }
+  .prior-item:last-child { margin-bottom: 0; }
+  .prior-item-title { font-size: 13px; font-weight: 600; color: var(--ivory-bright); margin-bottom: 4px; }
+  .prior-score { font-size: 11px; color: var(--slate-dim); font-weight: 500; }
+  .prior-item-acao { font-size: 12.5px; color: var(--slate); line-height: 1.6; }
+  .export-wrap { text-align: center; margin: 20px 0; }
   .tag-fail { font-size: 11px; padding: 1px 8px; border-radius: 20px; background: var(--danger-dim); color: var(--danger-text); margin-left: 6px; font-weight: 500; }
   .tag-ok { font-size: 11px; padding: 1px 8px; border-radius: 20px; background: var(--gold-dim); color: var(--gold-bright); margin-left: 6px; font-weight: 500; }
   .alerta-wrap { background: var(--danger-dim); border: 1px solid rgba(226,115,75,0.3); border-radius: 10px; padding: 18px; margin: 16px 0; }
@@ -92,6 +110,22 @@
     body { padding: 24px 14px; }
     .tool-wrapper { padding: 22px; }
     .bar-label { width: 130px; font-size: 12px; }
+  }
+  @media print {
+    body { background: #fff !important; padding: 0; }
+    .page-eyebrow { display: none; }
+    .page-title, .page-sub { color: #111 !important; }
+    .tool-wrapper { background: #fff !important; border: none !important; padding: 0 !important; }
+    .tool-wrapper * { color: #111 !important; }
+    .bar-track { background: #e8e8e8 !important; }
+    .bar-fill { background: #9c8352 !important; }
+    .radar-grid, .radar-axis { stroke: #ccc !important; }
+    .radar-data { fill: rgba(156,131,82,0.22) !important; stroke: #9c8352 !important; }
+    .radar-dot { fill: #9c8352 !important; }
+    .radar-dot-critical { fill: #b23b3b !important; }
+    .alerta-wrap, .ok-box, .exec-summary, .prior-wrap, .prior-item { background: #f6f6f6 !important; border-color: #ddd !important; }
+    .r-badge { background: #eee !important; }
+    .export-wrap, .tcta-box, footer { display: none !important; }
   }
 </style>
 </head>
@@ -145,44 +179,86 @@ var DIMS=[
       {text:"A estrutura organizacional da empresa (papéis, níveis hierárquicos, áreas) é:",opts:["Confusa ou informal — pessoas acumulam funções sem definição clara.","Existe um organograma, mas não reflete como o trabalho realmente acontece.","É clara e usada no dia a dia, com pequenos ajustes pontuais.","É clara, atualizada e revisada conforme a empresa cresce ou muda de estratégia."]},
       {text:"Quando um problema surge, geralmente fica claro quem é o responsável por resolvê-lo?",opts:["Não, há confusão frequente sobre \"de quem é isso\".","Às vezes, depende do tipo de problema.","Na maioria das vezes, sim.","Sim, a responsabilidade é sempre clara, mesmo em temas novos ou ambíguos."]},
       {text:"O número de camadas hierárquicas entre a liderança e a operação é:",opts:["Excessivo, gerando lentidão e distorção de informação.","Alto, mas funcional na maior parte do tempo.","Adequado ao porte da empresa, com raras exceções.","Calibrado deliberadamente, revisado quando a empresa muda de escala."]}
-    ]},
+    ],
+    niveis:{
+      baixo:{texto:"Sem papéis e responsabilidades claros, decisões e problemas ficam sem dono — cada questão vira uma negociação informal sobre quem deveria agir.",acao:"Mapeie as 5 áreas ou funções mais críticas da empresa e documente, para cada uma, quem é o responsável final por decisões e resultados."},
+      medio:{texto:"Existe uma estrutura formal, mas ela nem sempre reflete como o trabalho realmente acontece — o organograma no papel diverge da prática do dia a dia.",acao:"Compare o organograma oficial com o fluxo real de decisões em 2 ou 3 situações recentes, e ajuste o que estiver desatualizado."},
+      alto:{texto:"A estrutura organizacional é clara, usada no dia a dia e revisada conforme a empresa muda — isso reduz atrito e acelera decisões.",acao:"Revise a estrutura a cada mudança relevante de escala ou estratégia, antes que ela se torne um gargalo silencioso."}
+    }
+  },
   {id:"cultura",title:"Cultura de Performance",desc:"Desempenho gera consequência e reconhecimento?",icon:"🏆",critica:false,
     perguntas:[
       {text:"As expectativas de desempenho para cada função são:",opts:["Não definidas ou vagas.","Definidas informalmente, variando por gestor.","Formalizadas, mas nem sempre acompanhadas de perto.","Formalizadas, comunicadas e acompanhadas de forma consistente."]},
       {text:"Diferenças de desempenho entre colaboradores/times geram consequências (reconhecimento, desenvolvimento ou correção)?",opts:["Não — bons e maus desempenhos são tratados da mesma forma.","Ocasionalmente, dependendo do gestor.","Na maioria dos casos, sim.","Sim, de forma sistemática e percebida como justa pela maioria."]},
       {text:"Colaboradores de alta performance tendem a:",opts:["Sair da empresa por falta de reconhecimento ou oportunidade.","Ficar, mas sem grande diferenciação em relação aos demais.","Ser reconhecidos, com alguma diferenciação de carreira ou remuneração.","Ter trajetórias claramente aceleradas e serem retidos ativamente."]}
-    ]},
+    ],
+    niveis:{
+      baixo:{texto:"Quando bons e maus desempenhos são tratados da mesma forma, a mensagem implícita é que performance não importa — o que naturalmente afasta os melhores profissionais com o tempo.",acao:"Escolha um time ou área piloto e implemente uma conversa estruturada de desempenho neste trimestre, com consequência real (reconhecimento ou plano de desenvolvimento)."},
+      medio:{texto:"As expectativas de desempenho existem, mas o acompanhamento é inconsistente — depende muito do estilo de cada gestor.",acao:"Padronize um formato mínimo de avaliação de desempenho para todos os gestores usarem, mesmo que simples."},
+      alto:{texto:"A performance gera consequência real e é percebida como justa — isso retém os melhores profissionais e reforça o padrão que a empresa quer replicar.",acao:"Audite periodicamente se a percepção de justiça se mantém à medida que a empresa cresce e novos gestores entram."}
+    }
+  },
   {id:"ritmo",title:"Ritmo de Gestão",desc:"A cadência de acompanhamento sustenta a execução?",icon:"⏱️",critica:false,
     perguntas:[
       {text:"As reuniões de acompanhamento de resultados (revisões, comitês) acontecem:",opts:["De forma esporádica ou apenas quando há problema.","Existem, mas sem cadência fixa ou frequentemente canceladas.","Com cadência regular, na maioria das vezes.","Com cadência regular, disciplinada e raramente interrompida."]},
       {text:"Decisões tomadas em reuniões de gestão:",opts:["Frequentemente não saem do papel.","Às vezes são implementadas, às vezes se perdem.","Geralmente são implementadas, com acompanhamento.","São sistematicamente registradas, atribuídas e cobradas até a conclusão."]},
       {text:"O tempo entre identificar um problema de performance e agir sobre ele é:",opts:["Longo — meses, às vezes sem ação nenhuma.","Variável, depende de quem percebe o problema.","Razoavelmente rápido, dentro de semanas.","Rápido e consistente, parte da rotina de gestão."]}
-    ]},
+    ],
+    niveis:{
+      baixo:{texto:"Sem cadência de acompanhamento, decisões tomadas em reuniões frequentemente não saem do papel — e problemas de performance só são percebidos quando já causaram dano.",acao:"Estabeleça uma reunião de acompanhamento com data fixa nas próximas duas semanas, com uma lista curta de decisões pendentes para cobrar."},
+      medio:{texto:"Existe alguma cadência de acompanhamento, mas ainda irregular — decisões às vezes avançam, às vezes se perdem no caminho.",acao:"Crie um registro simples (mesmo que uma planilha) de decisões tomadas em reuniões, com responsável e prazo, e revise-o na reunião seguinte."},
+      alto:{texto:"A empresa tem um ritmo de gestão disciplinado, com decisões registradas, atribuídas e cobradas até a conclusão.",acao:"Proteja esse ritmo formalizando-o como rito organizacional, para que resista a períodos de pressão ou trocas de liderança."}
+    }
+  },
   {id:"orcamento",title:"Gestão Orçamentária e Custos",desc:"Há disciplina financeira e previsibilidade?",icon:"💰",critica:false,
     perguntas:[
       {text:"O orçamento anual da empresa é:",opts:["Inexistente ou feito de forma muito superficial.","Existe, mas raramente usado para decisões ao longo do ano.","Usado como referência, com revisões periódicas.","Usado ativamente, com revisões frequentes e disciplina de execução."]},
       {text:"Desvios entre o orçado e o realizado são:",opts:["Não acompanhados de forma sistemática.","Acompanhados, mas sem ação clara quando ocorrem.","Acompanhados e geram ajustes na maioria dos casos.","Acompanhados de perto, com ação corretiva rápida e disciplinada."]},
       {text:"Decisões de corte ou redução de custos, quando necessárias, são:",opts:["Feitas de forma genérica (\"cortar tudo em X%\"), sem critério estratégico.","Feitas com algum critério, mas de forma reativa.","Feitas com análise, priorizando o que menos afeta o essencial.","Feitas com critério estratégico claro, preservando prioridades definidas."]}
-    ]},
+    ],
+    niveis:{
+      baixo:{texto:"Sem orçamento usado de fato para decisões, a empresa opera no escuro financeiramente — surpresas de caixa tendem a aparecer tarde demais para reagir com calma.",acao:"Monte um orçamento simples para os próximos 12 meses e compare-o mensalmente com o realizado, mesmo que de forma manual."},
+      medio:{texto:"O orçamento existe e é usado como referência, mas os desvios nem sempre geram ação clara e tempestiva.",acao:"Defina um gatilho simples (por exemplo, desvio acima de 10%) que obrigue uma decisão explícita de ajuste, não apenas o registro do desvio."},
+      alto:{texto:"A gestão orçamentária é usada ativamente, com disciplina de execução e ação corretiva rápida quando necessário.",acao:"Use o histórico de desvios para melhorar a precisão do próximo ciclo orçamentário, fechando o loop de aprendizado financeiro."}
+    }
+  },
   {id:"decisao",title:"Tomada de Decisão",desc:"As decisões são ágeis, claras e bem fundamentadas?",icon:"🧩",critica:false,
     perguntas:[
       {text:"Decisões importantes na empresa costumam ser tomadas:",opts:["De forma lenta, com muitas idas e vindas ou aprovações redundantes.","Em tempo razoável, mas com fricção considerável.","Em tempo adequado na maioria dos casos.","Com agilidade, sem abrir mão da qualidade da decisão."]},
       {text:"Está claro, para a maioria dos temas, quem tem autonomia para decidir sem precisar escalar?",opts:["Não, quase tudo escala para o topo.","Parcialmente, depende da pessoa e do momento.","Sim, para a maioria dos temas operacionais.","Sim, com autonomia bem calibrada em todos os níveis relevantes."]},
       {text:"As decisões tomadas costumam ser baseadas em:",opts:["Intuição ou opinião de quem tem mais poder na sala.","Uma mistura de dados e intuição, sem padrão claro.","Dados e análise na maioria das vezes.","Dados e análise, de forma consistente e disciplinada."]}
-    ]},
+    ],
+    niveis:{
+      baixo:{texto:"Quando quase tudo escala para o topo e decisões dependem mais de opinião do que de dados, a velocidade e a qualidade das decisões dependem excessivamente de poucas pessoas.",acao:"Identifique 3 tipos de decisão recorrente que hoje escalam desnecessariamente e delegue-as formalmente a quem está mais perto do problema."},
+      medio:{texto:"As decisões acontecem em tempo razoável, mas com fricção considerável — falta clareza sobre quem pode decidir o quê sem escalar.",acao:"Documente, para as áreas mais críticas, quais decisões podem ser tomadas sem aprovação superior — e comunique isso claramente."},
+      alto:{texto:"As decisões são ágeis, baseadas em dados e a autonomia está bem calibrada em diferentes níveis — isso é uma vantagem competitiva real em mercados que mudam rápido.",acao:"Revise periodicamente os limites de autonomia definidos, para que continuem adequados ao tamanho e à maturidade atual da empresa."}
+    }
+  },
   {id:"governanca",title:"Governança Corporativa",desc:"Conselho, transparência e prestação de contas funcionam?",icon:"⚖️",critica:true,
     alerta:"Sem governança efetiva — conselho atuante, separação clara entre propriedade e gestão, transparência de informação — nenhuma outra dimensão de gestão se sustenta no longo prazo. É o padrão por trás da estatística mais dura sobre empresas familiares brasileiras: apenas 19% chegam à terceira geração, mesmo respondendo por 65% do PIB nacional. Governança fraca hoje é crise de sucessão amanhã.",
     perguntas:[
       {text:"A empresa tem um conselho de administração ou consultivo com papel efetivo (não apenas formal)?",opts:["Não existe ou é puramente formal, sem influência real nas decisões.","Existe, mas com pouca informação ou pouca cobrança sobre a gestão.","Existe e exerce influência real na maioria das decisões relevantes.","Existe, é ativo, bem informado, e contribui de forma consistente para a qualidade das decisões."]},
       {text:"A separação entre propriedade (sócios/família) e gestão do dia a dia é:",opts:["Inexistente — sócios/família interferem diretamente na operação sem processo claro.","Parcial, com interferências frequentes fora de canais formais.","Razoavelmente clara, com poucas exceções.","Clara, formalizada e respeitada por todos os envolvidos."]},
       {text:"Informações relevantes sobre a saúde da empresa (financeira, riscos, compliance) são:",opts:["Concentradas informalmente com poucas pessoas, sem transparência.","Compartilhadas parcialmente, de forma inconsistente.","Compartilhadas de forma estruturada com quem precisa saber.","Compartilhadas de forma transparente, com processos formais de prestação de contas."]}
-    ]},
+    ],
+    niveis:{
+      baixo:{texto:"Sem separação clara entre propriedade e gestão, e sem um conselho que efetivamente exerça influência, decisões importantes ficam reféns de relações pessoais em vez de processos — o que é especialmente arriscado no momento de uma sucessão.",acao:"Formalize um conselho consultivo, mesmo que simples, com reuniões periódicas e pauta objetiva sobre os principais riscos e decisões do negócio."},
+      medio:{texto:"Existe alguma estrutura de governança, mas ainda com interferências informais ou compartilhamento parcial de informação.",acao:"Estabeleça um calendário fixo de prestação de contas (financeira, riscos) para o conselho ou para os sócios, com pauta e informações padronizadas."},
+      alto:{texto:"A governança já funciona com um conselho ativo, separação clara entre propriedade e gestão, e transparência real de informação — isso é raro e é exatamente o que protege a empresa em momentos de transição.",acao:"Use essa estrutura de governança para formalizar, desde já, um plano de sucessão — é o momento mais seguro para fazer isso, longe de uma crise."}
+    }
+  },
   {id:"indicadores",title:"Indicadores e Controle de Gestão",desc:"A empresa mede e usa dados para decidir?",icon:"📊",critica:false,
     perguntas:[
       {text:"A empresa acompanha o desempenho do negócio por meio de indicadores (KPIs) claramente definidos?",opts:["Não, ou de forma muito básica/isolada.","Existem indicadores, mas dispersos ou pouco confiáveis.","Existem indicadores confiáveis, revisados periodicamente.","Existem indicadores confiáveis, integrados e usados ativamente na tomada de decisão."]},
       {text:"Os relatórios/dashboards de gestão chegam a quem precisa deles:",opts:["Raramente, ou de forma muito atrasada para serem úteis.","Às vezes, com atraso relevante.","Na maioria das vezes, em tempo hábil.","Sempre, em tempo hábil e no formato certo para cada nível de decisão."]},
       {text:"Quando um indicador foge do esperado, a empresa:",opts:["Frequentemente não percebe a tempo.","Percebe, mas demora a agir.","Percebe e age na maioria dos casos.","Percebe rapidamente e tem um processo claro de resposta."]}
-    ]}
+    ],
+    niveis:{
+      baixo:{texto:"Sem indicadores confiáveis, decisões importantes se baseiam em percepção — e problemas de performance costumam ser percebidos tarde, quando o custo de corrigir já é maior.",acao:"Escolha de 3 a 5 indicadores essenciais do negócio e comece a acompanhá-los com regularidade, mesmo que de forma simples."},
+      medio:{texto:"Existem indicadores, mas dispersos ou pouco confiáveis — o que reduz a confiança de quem precisa usá-los para decidir.",acao:"Centralize os indicadores mais importantes em um único painel e defina quem é responsável por mantê-lo atualizado."},
+      alto:{texto:"Os indicadores são confiáveis, chegam a tempo e são usados ativamente na tomada de decisão — isso é a espinha dorsal de uma gestão orientada a dados.",acao:"Revise periodicamente se os indicadores acompanhados ainda refletem o que realmente importa para o momento atual do negócio."}
+    }
+  }
 ];
 var curD=0;
 var respostas=[];
@@ -241,6 +317,40 @@ function nivelInfo(sc){
   if(sc<3.8)return{label:"Consolidada",bg:"rgba(196,164,100,0.22)",txt:"#E8C87A"};
   return{label:"Referência",bg:"rgba(196,164,100,0.3)",txt:"#F8F7F4"};
 }
+function tierOf(sc){return sc<2.5?"baixo":sc<3.5?"medio":"alto";}
+var LEITURA_FECHO="Esse é o teste real de maturidade de gestão: não é o quanto os processos parecem sofisticados no papel, e sim o quanto eles efetivamente sustentam decisões rápidas, consistentes e bem informadas no dia a dia.";
+function buildLeituraExecutiva(scores){
+  var idxMax=0,idxMin=0;
+  for(var i=1;i<scores.length;i++){ if(scores[i]>scores[idxMax])idxMax=i; if(scores[i]<scores[idxMin])idxMin=i; }
+  var equilibrado=(scores[idxMax]-scores[idxMin])<0.4;
+  var html="<div class='exec-summary'><div class='exec-label'>Leitura executiva</div>";
+  if(equilibrado){
+    html+="<p>Seu perfil está relativamente equilibrado entre as 7 dimensões avaliadas, sem um ponto de força ou de fragilidade que se destaque isoladamente — o que também é uma informação útil: o desafio aqui não é uma dimensão específica, e sim elevar o patamar geral de maturidade de gestão como um todo.</p>";
+  } else {
+    html+="<p>O ponto mais forte do seu perfil é <strong>"+DIMS[idxMax].title+"</strong> ("+scores[idxMax]+"/4): "+DIMS[idxMax].niveis[tierOf(scores[idxMax])].texto+"</p>";
+    html+="<p>A maior oportunidade de evolução está em <strong>"+DIMS[idxMin].title+"</strong> ("+scores[idxMin]+"/4): "+DIMS[idxMin].niveis[tierOf(scores[idxMin])].texto+"</p>";
+  }
+  html+="<p>"+LEITURA_FECHO+"</p></div>";
+  return html;
+}
+function buildPrioridades(scores){
+  var idxs=DIMS.map(function(_,i){return i;});
+  idxs.sort(function(a,b){return scores[a]-scores[b];});
+  var p1=idxs[0],p2=idxs[1];
+  var allStrong=scores[p1]>=3.5;
+  var html="<div class='prior-wrap'>";
+  if(allStrong){
+    html+="<div class='prior-titulo'>✅ Sem prioridades críticas no momento</div><div class='prior-texto'>Mesmo as dimensões relativamente mais baixas do seu perfil já indicam uma base consolidada. Vale aprofundar:</div>";
+  } else {
+    html+="<div class='prior-titulo'>🎯 Prioridades imediatas</div><div class='prior-texto'>Estas duas dimensões merecem atenção antes das demais:</div>";
+  }
+  [p1,p2].forEach(function(i){
+    var tier=tierOf(scores[i]);
+    html+="<div class='prior-item'><div class='prior-item-title'>"+DIMS[i].title+" <span class='prior-score'>"+scores[i]+"/4</span></div><div class='prior-item-acao'>"+DIMS[i].niveis[tier].acao+"</div></div>";
+  });
+  html+="</div>";
+  return html;
+}
 function mostrarResultado(){
   var scores=DIMS.map(function(_,i){return dimScore(i);});
   var media=Math.round((scores.reduce(function(a,b){return a+b;},0)/scores.length)*10)/10;
@@ -252,12 +362,14 @@ function mostrarResultado(){
   var dimRows=scores.map(function(s,i){
     var pct=Math.round((s/4)*100);
     var tag=DIMS[i].critica?(s<2.5?"<span class='tag-fail'>crítica — abaixo do mínimo</span>":"<span class='tag-ok'>crítica — ok</span>"):"";
-    return "<div class='bar-row'><div class='bar-label'>"+DIMS[i].title+tag+"</div><div class='bar-track'><div class='bar-fill' style='width:"+pct+"%'></div></div><div class='bar-val'>"+s+"/4</div></div>";
+    var nota=DIMS[i].niveis[tierOf(s)].texto;
+    return "<div class='bar-block'><div class='bar-row'><div class='bar-label'>"+DIMS[i].title+tag+"</div><div class='bar-track'><div class='bar-fill' style='width:"+pct+"%'></div></div><div class='bar-val'>"+s+"/4</div></div><div class='bar-note'>"+nota+"</div></div>";
   }).join("");
   var fb="";
   if(gated){
     fb="<div class='alerta-wrap'><div class='alerta-titulo'>⚠️ Governança corporativa abaixo do mínimo</div><div class='alerta-texto'>"+DIMS[gIdx].alerta+"<br><br>Por isso, mesmo que outras dimensões pontuem bem, o nível geral reportado fica limitado a \"Em Desenvolvimento\" — sem governança efetiva, a maturidade de gestão não se sustenta na prática.</div></div>";
   }
+  fb+="<div class='export-wrap'><button class='tbtn outline' id='btn-print' onclick='window.print()'>🖨️ Baixar / imprimir este diagnóstico</button></div>";
   fb+="<div class='tcta-box'><p>Este é o segundo diagnóstico da plataforma IME — Índice de Maturidade Executiva. Conheça os demais:</p>";
   fb+="<div class='platform-nav'>";
   fb+="<div class='platform-item'><a href='clareza-estrategica.html'>Clareza Estratégica — a empresa sabe para onde vai?</a><span class='platform-tag'>disponível</span></div>";
@@ -265,9 +377,11 @@ function mostrarResultado(){
   fb+="<div class='platform-item'><a href='planejamento-estrategico.html'>Planejamento Estratégico — a empresa transforma visão em planos executáveis?</a><span class='platform-tag'>disponível</span></div>";
   fb+="<div class='platform-item'><span style='color:var(--slate)'>Prontidão para Transformação</span><span class='platform-tag'>em breve</span></div>";
   fb+="</div>";
-  fb+="<p style='margin-top:16px'>Quer discutir o que este resultado significa na prática para sua empresa?</p><button class='tbtn primary' onclick=\"window.open('https://www.linkedin.com/in/sebastiao-nunes-rocha-de-souza','_blank')\">Falar com Sebastião Nunes ↗</button>";
+  fb+="<p style='margin-top:16px'>Diagnósticos como este ganham mais valor quando revisitados ao longo do tempo, acompanhando a evolução real da empresa. Se este resultado levantou algo que vale a pena aprofundar, sigo disponível para conversar no LinkedIn.</p><button class='tbtn primary' onclick=\"window.open('https://www.linkedin.com/in/sebastiao-nunes-rocha-de-souza','_blank')\">Conversar no LinkedIn ↗</button>";
   fb+="<button class='treiniciar' onclick='reiniciar()'>Refazer diagnóstico</button></div>";
-  var html="<div style='text-align:center;margin-bottom:20px'><div class='r-badge' style='background:"+nv.bg+";color:"+nv.txt+"'>"+nv.label+"</div><div class='r-title'>Pontuação geral: "+media+"/4</div><div class='r-sub'>Veja abaixo o desempenho por dimensão.</div></div>";
+  var html="<div style='text-align:center;margin-bottom:8px'><div class='r-badge' style='background:"+nv.bg+";color:"+nv.txt+"'>"+nv.label+"</div><div class='r-title'>Pontuação geral: "+media+"/4</div><div class='r-sub'>Veja abaixo a leitura completa do seu resultado.</div></div>";
+  html+=buildLeituraExecutiva(scores);
+  html+=buildPrioridades(scores);
   html+="<div class='radar-wrap'>"+buildRadarSVG(SHORT_LABELS,scores,gIdx)+"</div>";
   html+="<div style='margin-bottom:8px'>"+dimRows+"</div>"+fb;
   renderTool(html);
