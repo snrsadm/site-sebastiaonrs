@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -90,6 +89,13 @@
   .diag-status.ok { background: var(--gold-dim); color: var(--gold-bright); }
   .diag-status.soon { background: rgba(255,255,255,0.05); color: var(--slate-dim); }
   .diag-card a.diag-link { text-decoration: none; }
+  .livro-teaser { background: var(--navy-mid); padding-top: 70px; padding-bottom: 70px; }
+  .livro-teaser-card { display: grid; grid-template-columns: 180px 1fr; gap: 40px; align-items: center; background: var(--navy); border: 1px solid rgba(196,164,100,0.2); border-radius: 16px; padding: 36px 40px; }
+  .livro-teaser-cover img { width: 100%; height: auto; border-radius: 8px; box-shadow: 0 16px 40px rgba(0,0,0,0.4); }
+  .livro-teaser-content .section-eyebrow { margin-bottom: 10px; }
+  .livro-teaser-title { font-family: var(--font-display); font-size: clamp(20px, 2.2vw, 26px); font-weight: 800; letter-spacing: -0.3px; line-height: 1.3; margin-bottom: 14px; color: var(--ivory-bright); }
+  .livro-teaser-text { font-size: 14.5px; color: var(--slate); line-height: 1.75; margin-bottom: 12px; max-width: 620px; }
+  .livro-teaser-content .btn-primary { margin-top: 12px; }
   .sobre { background: var(--navy); }
   .sobre-grid { display: grid; grid-template-columns: 260px 1fr; gap: 64px; align-items: start; margin-top: 56px; }
   .sobre-avatar { width: 100%; aspect-ratio: 1; border-radius: 16px; border: 1px solid rgba(196,164,100,0.2); overflow: hidden; }
@@ -119,6 +125,9 @@
     .sobre-avatar { max-width: 200px; }
     .bento-grid { grid-template-columns: 1fr; }
     .bento-tile.wide { grid-column: span 1; }
+    .livro-teaser { padding-top: 45px; padding-bottom: 45px; }
+    .livro-teaser-card { grid-template-columns: 1fr; padding: 28px 24px; text-align: center; }
+    .livro-teaser-cover img { max-width: 160px; margin: 0 auto; }
   }
 </style>
 </head>
@@ -130,6 +139,7 @@
     <a href="#panorama">Panorama</a>
     <a href="#diagnosticos">Diagnósticos</a>
     <a href="#sobre">Sobre</a>
+    <a href="livro/">Livro</a>
     <a href="#contato" class="nav-cta">Contato</a>
   </div>
 </nav>
@@ -202,12 +212,28 @@
   </div>
 </section>
 
+<section class="livro-teaser" id="livro-teaser">
+  <div class="section-inner">
+    <div class="livro-teaser-card">
+      <div class="livro-teaser-cover">
+        <img src="livro/assets/capa-livro.jpg" alt="Capa do livro Liderando Organizações para a Era da Inteligência Artificial, de Sebastião Nunes" loading="lazy" width="708" height="1000">
+      </div>
+      <div class="livro-teaser-content">
+        <div class="section-eyebrow">Novo livro</div>
+        <h2 class="livro-teaser-title">Liderando Organizações para a Era da Inteligência Artificial</h2>
+        <p class="livro-teaser-text">A inteligência artificial amplia capacidades. Mas são a liderança, a cultura, os processos, a governança e os dados que determinam se esse potencial se transforma em resultados.</p>
+        <p class="livro-teaser-text">Conheça uma abordagem executiva para preparar organizações capazes de utilizar IA com consistência e gerar resultados que persistem.</p>
+        <a class="btn-primary" href="livro/">Conhecer o livro →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
 <section class="sobre" id="sobre">
   <div class="section-inner">
     <div class="section-eyebrow">Quem está por trás</div>
     <div class="sobre-grid">
-      <div class="sobre-avatar"><img src="https://snrsadm.github.io/aiready/foto.png.png" alt="Sebastião Nunes"></div>
+      <div class="sobre-avatar"><img src="livro/assets/foto-sebastiao-nunes.jpg" alt="Sebastião Nunes"></div>
       <div>
         <div class="sobre-name">Sebastião Nunes</div>
         <div class="sobre-title">Executivo de Estratégia, Transformação e Inovação</div>
