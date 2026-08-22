@@ -95,7 +95,7 @@
   .alt-bg .pub-card { background: var(--navy-mid); }
   .pub-card--accent { border-color: rgba(222,82,9,0.35); }
   .pub-cover { margin: 0 auto 26px; max-width: 190px; }
-  .pub-cover img { width: 100%; border-radius: 8px; box-shadow: 0 20px 50px rgba(0,0,0,0.45); border: 1px solid rgba(196,164,100,0.2); }
+  .pub-cover img { width: 100%; height: auto; border-radius: 8px; box-shadow: 0 20px 50px rgba(0,0,0,0.45); border: 1px solid rgba(196,164,100,0.2); }
   .pub-card--accent .pub-cover img { border-color: rgba(222,82,9,0.3); }
   .pub-meta { font-size: 11.5px; font-weight: 600; letter-spacing: 0.6px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
   .pub-card--accent .pub-meta { color: var(--accent2-bright); }
@@ -105,10 +105,6 @@
   .pub-desc { font-size: 14px; color: var(--slate); line-height: 1.75; margin-bottom: 26px; flex-grow: 1; }
   .pub-actions { display: flex; flex-direction: column; gap: 12px; align-items: center; }
 
-  /* CITAÇÃO */
-  .highlight-quote { border-left: 3px solid var(--gold); padding: 22px 30px; background: var(--gold-dim2); border-radius: 0 12px 12px 0; font-family: var(--font-display); font-size: clamp(17px, 2vw, 21px); color: var(--ivory-bright); line-height: 1.55; margin-top: 40px; }
-  .highlight-quote.accent2 { border-left-color: var(--accent2); background: var(--accent2-dim); }
-
   /* CHECK GRID */
   .check-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 14px; margin-top: 36px; }
   .check-item { background: var(--navy); border: 1px solid rgba(196,164,100,0.15); border-radius: 10px; padding: 16px 20px; font-size: 14.5px; color: var(--ivory); display: flex; gap: 12px; align-items: flex-start; line-height: 1.5; }
@@ -116,21 +112,18 @@
   .check-item::before { content: '✓'; color: var(--gold-bright); font-weight: 700; flex-shrink: 0; }
   .check-item.accent2::before { color: var(--accent2-bright); }
 
-  /* FRAMEWORK / ESTRUTURA */
-  .framework-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-top: 40px; }
-  .framework-card { background: var(--navy); border: 1px solid rgba(196,164,100,0.15); border-radius: 14px; padding: 28px; flex: 1 1 100%; }
-  .alt-bg .framework-card { background: var(--navy-mid); }
-  .framework-card.accent2 { border-color: rgba(222,82,9,0.22); }
-  @media (min-width: 640px) {
-    .framework-card { flex: 1 1 calc(50% - 10px); max-width: calc(50% - 10px); }
-  }
-  @media (min-width: 1024px) {
-    .framework-card { flex: 1 1 calc(33.333% - 14px); max-width: calc(33.333% - 14px); }
-  }
-  .framework-num { font-family: var(--font-display); font-size: 14px; color: var(--gold-bright); margin-bottom: 10px; font-weight: 700; letter-spacing: 0.5px; }
-  .framework-card.accent2 .framework-num { color: var(--accent2-bright); }
-  h3.framework-title { font-size: 17px; font-weight: 700; color: var(--ivory-bright); margin-bottom: 10px; font-family: var(--font-display); }
-  .framework-desc { font-size: 14px; color: var(--slate); line-height: 1.75; }
+  /* COMO OS LIVROS SE CONVERSAM */
+  .conversa-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 40px; }
+  @media (min-width: 760px) { .conversa-grid { grid-template-columns: 1fr 1fr; } }
+  .conversa-col { background: var(--navy-mid); border: 1px solid rgba(196,164,100,0.18); border-radius: 16px; padding: 32px; }
+  .conversa-col.accent2 { border-color: rgba(222,82,9,0.3); }
+  .conversa-tag { font-size: 11.5px; font-weight: 600; letter-spacing: 0.6px; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+  .conversa-col.accent2 .conversa-tag { color: var(--accent2-bright); }
+  .conversa-title { font-family: var(--font-display); font-size: 19px; font-weight: 800; color: var(--ivory-bright); margin-bottom: 12px; line-height: 1.35; }
+  .conversa-text { font-size: 14.5px; color: var(--slate); line-height: 1.75; margin-bottom: 18px; }
+  .conversa-quote { font-family: var(--font-display); font-size: 15px; color: var(--ivory-bright); font-style: italic; line-height: 1.5; border-left: 2px solid var(--gold); padding-left: 14px; }
+  .conversa-col.accent2 .conversa-quote { border-left-color: var(--accent2); }
+  .conversa-closing { text-align: center; font-family: var(--font-display); font-style: italic; font-size: clamp(16px, 2vw, 19px); color: var(--ivory-bright); line-height: 1.6; margin: 40px auto 0; max-width: 680px; }
 
   /* SOBRE AUTOR */
   .sobre-grid { display: grid; grid-template-columns: 220px 1fr; gap: 56px; align-items: start; margin-top: 8px; }
@@ -225,115 +218,34 @@
   </div>
 </section>
 
-<!-- O DESAFIO (livro 1) -->
-<section class="alt-bg" id="desafio">
+<!-- COMO OS LIVROS SE CONVERSAM -->
+<section class="alt-bg" id="conversa">
   <div class="section-inner">
-    <div class="section-eyebrow">Sobre o primeiro livro</div>
-    <h2 class="section-title">Mais tecnologia não significa, necessariamente, melhores resultados</h2>
-    <p class="section-sub">Organizações investem em ferramentas, projetos-piloto e novas plataformas, mas frequentemente mantêm os mesmos processos, os mesmos critérios de decisão e as mesmas limitações culturais.</p>
-    <p class="section-sub" style="margin-top:18px">A inteligência artificial amplia o que já existe. Em uma organização preparada, amplia capacidades. Em uma organização desorganizada, amplia inconsistências.</p>
-    <div class="highlight-quote">A inteligência artificial amplia capacidades. A Orquestração Organizacional transforma capacidades em resultados.</div>
-    <div class="framework-grid">
-      <div class="framework-card">
-        <div class="framework-num">01</div>
-        <h3 class="framework-title">Liderança Orquestradora</h3>
-        <p class="framework-desc">Define a direção, projeta a arquitetura de decisão e modela os comportamentos necessários à transformação.</p>
-      </div>
-      <div class="framework-card">
-        <div class="framework-num">02</div>
-        <h3 class="framework-title">Cultura como Fundação</h3>
-        <p class="framework-desc">Cria um ambiente capaz de aprender, experimentar e lidar com a incerteza.</p>
-      </div>
-      <div class="framework-card">
-        <div class="framework-num">03</div>
-        <h3 class="framework-title">Processos e Governança</h3>
-        <p class="framework-desc">Redesenha decisões, responsabilidades e fluxos para que a IA opere com clareza e consistência.</p>
-      </div>
-      <div class="framework-card">
-        <div class="framework-num">04</div>
-        <h3 class="framework-title">Dados como Ativo Estratégico</h3>
-        <p class="framework-desc">Garante qualidade, integração e acessibilidade das informações utilizadas para decidir.</p>
-      </div>
-      <div class="framework-card">
-        <div class="framework-num">05</div>
-        <h3 class="framework-title">Resultados que Persistem</h3>
-        <p class="framework-desc">Converte iniciativas em valor mensurável, aprendizado contínuo e impacto sustentável.</p>
-      </div>
-    </div>
-  </div>
-</section>
+    <div class="section-eyebrow">Como os livros se conversam</div>
+    <h2 class="section-title">Duas etapas da mesma exigência: transformar decisão em resultado</h2>
+    <p class="section-sub">As duas obras partem da mesma constatação: a maior parte das organizações não fracassa por falta de visão, mas pela distância entre o que foi decidido e o que a estrutura da empresa consegue sustentar. Uma trata de preparar essa estrutura para o que vem. A outra, de mantê-la funcionando depois que a decisão já foi tomada.</p>
 
-<!-- SOBRE O SEGUNDO LIVRO -->
-<section id="depois-de-dezembro">
-  <div class="section-inner">
-    <div class="section-eyebrow">Sobre o segundo livro</div>
-    <h2 class="section-title">O plano é aprovado em dezembro. Por volta de março, deixa de ser citado</h2>
-    <p class="section-sub">Ninguém cancela o plano, ninguém decide abandoná-lo: ele simplesmente para de aparecer. O livro sustenta que a causa não é a qualidade do plano nem falta de empenho, e sim a ausência de uma arquitetura que o mantenha vivo depois que a reunião de formulação termina.</p>
-    <div class="highlight-quote accent2">Planejamento estratégico não é um documento. É um sistema de gestão.</div>
-
-    <div style="margin-top:52px">
-      <h3 class="framework-title" style="font-size:19px;margin-bottom:6px">Parte I — Por que o plano não se cumpre</h3>
-      <p class="section-sub" style="margin-bottom:0">Cinco mecanismos de diagnóstico. Nenhum deles é falta de esforço.</p>
-      <div class="framework-grid">
-        <div class="framework-card accent2">
-          <div class="framework-num">01</div>
-          <h3 class="framework-title">A ambiguidade confortável</h3>
-          <p class="framework-desc">O que acontece quando o indicador aponta para alguém que a organização não pode nomear.</p>
-        </div>
-        <div class="framework-card accent2">
-          <div class="framework-num">02</div>
-          <h3 class="framework-title">A meta que nasce impossível</h3>
-          <p class="framework-desc">Metas que dependem de terceiros sem influência, ou de verba aprovada em outra reunião.</p>
-        </div>
-        <div class="framework-card accent2">
-          <div class="framework-num">03</div>
-          <h3 class="framework-title">Trinta projetos</h3>
-          <p class="framework-desc">Saturação de mudança: por que muitas prioridades produzem menos que poucas.</p>
-        </div>
-        <div class="framework-card accent2">
-          <div class="framework-num">04</div>
-          <h3 class="framework-title">Indicador de necrotério</h3>
-          <p class="framework-desc">Frequência que não cabe na janela de correção, e régua que envelhece.</p>
-        </div>
-        <div class="framework-card accent2">
-          <div class="framework-num">05</div>
-          <h3 class="framework-title">Trezentos desvios</h3>
-          <p class="framework-desc">Sistema de consequência que exige mais análise do que a organização consegue fazer.</p>
-        </div>
+    <div class="conversa-grid">
+      <div class="conversa-col">
+        <div class="conversa-tag">Antes da decisão</div>
+        <h3 class="conversa-title">Liderando Organizações para a Era da Inteligência Artificial</h3>
+        <p class="conversa-text">Trata da arquitetura que uma organização precisa ter — em liderança, cultura, processos e dados — para que a inteligência artificial amplie capacidades reais, e não apenas expectativas.</p>
+        <p class="conversa-quote">"A inteligência artificial amplia capacidades. A Orquestração Organizacional as transforma em resultado."</p>
+      </div>
+      <div class="conversa-col accent2">
+        <div class="conversa-tag">Depois da decisão</div>
+        <h3 class="conversa-title">Depois de Dezembro</h3>
+        <p class="conversa-text">Trata do que sustenta um plano estratégico depois que ele é aprovado: os mecanismos que o esvaziam ao longo do ano e a arquitetura de governança que o mantém vivo até a entrega.</p>
+        <p class="conversa-quote">"Planejamento estratégico não é um documento. É um sistema de gestão."</p>
       </div>
     </div>
 
-    <div style="margin-top:52px">
-      <h3 class="framework-title" style="font-size:19px;margin-bottom:6px">Parte II — A arquitetura que sustenta</h3>
-      <p class="section-sub" style="margin-bottom:0">Quatro capítulos sobre o que se constrói.</p>
-      <div class="framework-grid">
-        <div class="framework-card accent2">
-          <div class="framework-num">06</div>
-          <h3 class="framework-title">O que não se copia</h3>
-          <p class="framework-desc">Por que alguns rituais sobrevivem sozinhos e outros morrem em poucos ciclos.</p>
-        </div>
-        <div class="framework-card accent2">
-          <div class="framework-num">07</div>
-          <h3 class="framework-title">A meta que não desce</h3>
-          <p class="framework-desc">Desdobramento até quem executa, integração com o orçamento e o que OKR resolve e não resolve.</p>
-        </div>
-        <div class="framework-card accent2">
-          <div class="framework-num">08</div>
-          <h3 class="framework-title">O sistema que ninguém consultava</h3>
-          <p class="framework-desc">A qualidade como fonte de evidência auditada para decisão de investimento.</p>
-        </div>
-        <div class="framework-card accent2">
-          <div class="framework-num">09</div>
-          <h3 class="framework-title">Falar com o Conselho</h3>
-          <p class="framework-desc">O que um conselho precisa ver e o que costuma receber no lugar.</p>
-        </div>
-      </div>
-    </div>
+    <p class="conversa-closing">Lidos em conjunto, os dois livros cobrem o ciclo completo — da decisão à entrega, da intenção ao resultado que persiste.</p>
   </div>
 </section>
 
 <!-- PARA QUEM SÃO ESTAS LEITURAS -->
-<section class="alt-bg" id="publico">
+<section id="publico">
   <div class="section-inner">
     <div class="section-eyebrow">Para quem são estas leituras</div>
     <h2 class="section-title">Para quem transforma intenção em resultado</h2>
