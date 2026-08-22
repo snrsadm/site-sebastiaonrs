@@ -4,19 +4,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Diagnósticos Estratégicos Gratuitos | Sebastião Nunes</title>
-<meta name="description" content="Diagnósticos gratuitos de liderança, governança e IA, mais o livro Liderando Organizações para a Era da Inteligência Artificial, por Sebastião Nunes.">
+<meta name="description" content="Diagnósticos gratuitos de liderança, governança e IA, além de publicações gratuitas de Sebastião Nunes sobre estratégia e execução.">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
  <link rel="canonical" href="https://sebastiaonrs.com.br/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Sebastião Nunes">
 <meta property="og:locale" content="pt_BR">
 <meta property="og:title" content="Diagnósticos Estratégicos Gratuitos | Sebastião Nunes">
-<meta property="og:description" content="Diagnósticos gratuitos de liderança, governança e IA, mais o livro Liderando Organizações para a Era da Inteligência Artificial, por Sebastião Nunes.">
+<meta property="og:description" content="Diagnósticos gratuitos de liderança, governança e IA, além de publicações gratuitas de Sebastião Nunes sobre estratégia e execução.">
 <meta property="og:url" content="https://sebastiaonrs.com.br/">
 <meta property="og:image" content="https://sebastiaonrs.com.br/livro/assets/og-livro-1200x630.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Diagnósticos Estratégicos Gratuitos | Sebastião Nunes">
-<meta name="twitter:description" content="Diagnósticos gratuitos de liderança, governança e IA, mais o livro Liderando Organizações para a Era da Inteligência Artificial, por Sebastião Nunes.">
+<meta name="twitter:description" content="Diagnósticos gratuitos de liderança, governança e IA, além de publicações gratuitas de Sebastião Nunes sobre estratégia e execução.">
 <meta name="twitter:image" content="https://sebastiaonrs.com.br/livro/assets/og-livro-1200x630.jpg">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Person","name":"Sebastião Nunes","url":"https://sebastiaonrs.com.br/","image":"https://sebastiaonrs.com.br/livro/assets/foto-sebastiao-nunes.jpg","jobTitle":"Executivo de Estratégia, Governança e Transformação Digital","sameAs":["https://www.linkedin.com/in/sebastiao-nunes-rocha-de-souza/","https://www.instagram.com/sebastiao_nunes_oficial/"]}
@@ -105,8 +105,9 @@
   .diag-status.soon { background: rgba(255,255,255,0.05); color: var(--slate-dim); }
   .diag-card a.diag-link { text-decoration: none; }
   .livro-teaser { background: var(--navy-mid); padding-top: 70px; padding-bottom: 70px; }
-  .livro-teaser-card { display: grid; grid-template-columns: 180px 1fr; gap: 40px; align-items: center; background: var(--navy); border: 1px solid rgba(196,164,100,0.2); border-radius: 16px; padding: 36px 40px; }
-  .livro-teaser-cover img { width: 100%; height: auto; border-radius: 8px; box-shadow: 0 16px 40px rgba(0,0,0,0.4); }
+  .livro-teaser-card { display: grid; grid-template-columns: 220px 1fr; gap: 40px; align-items: center; background: var(--navy); border: 1px solid rgba(196,164,100,0.2); border-radius: 16px; padding: 36px 40px; }
+  .livro-teaser-cover { display: flex; gap: 12px; }
+  .livro-teaser-cover img { width: calc(50% - 6px); height: auto; border-radius: 8px; box-shadow: 0 16px 40px rgba(0,0,0,0.4); }
   .livro-teaser-content .section-eyebrow { margin-bottom: 10px; }
   .livro-teaser-title { font-family: var(--font-display); font-size: clamp(20px, 2.2vw, 26px); font-weight: 800; letter-spacing: -0.3px; line-height: 1.3; margin-bottom: 14px; color: var(--ivory-bright); }
   .livro-teaser-text { font-size: 14.5px; color: var(--slate); line-height: 1.75; margin-bottom: 12px; max-width: 620px; }
@@ -120,6 +121,7 @@
   .sobre-bio { font-size: 15px; color: var(--slate); line-height: 1.85; margin-bottom: 28px; }
   .sobre-tags { display: flex; flex-wrap: wrap; gap: 8px; }
   .sobre-tag { background: var(--gold-dim); border: 1px solid rgba(196,164,100,0.25); color: var(--gold-bright); padding: 5px 13px; border-radius: 20px; font-size: 12px; font-weight: 500; }
+  .sobre-actions { margin-top: 22px; }
   .contato { text-align: center; background: linear-gradient(135deg, var(--navy-mid) 0%, var(--navy-light) 100%); }
   .contato .section-inner { max-width: 560px; margin: 0 auto; }
   .contato .section-eyebrow, .contato .section-title, .contato .section-sub { margin-left: auto; margin-right: auto; }
@@ -142,7 +144,8 @@
     .bento-tile.wide { grid-column: span 1; }
     .livro-teaser { padding-top: 45px; padding-bottom: 45px; }
     .livro-teaser-card { grid-template-columns: 1fr; padding: 28px 24px; text-align: center; }
-    .livro-teaser-cover img { max-width: 160px; margin: 0 auto; }
+    .livro-teaser-cover { justify-content: center; }
+    .livro-teaser-cover img { max-width: 110px; margin: 0; }
   }
 </style>
 </head>
@@ -154,7 +157,7 @@
     <a href="#panorama">Panorama</a>
     <a href="#diagnosticos">Diagnósticos</a>
     <a href="#sobre">Sobre</a>
-    <a href="livro/">Livro</a>
+    <a href="livro/">Livros</a>
     <a href="#contato" class="nav-cta">Contato</a>
   </div>
 </nav>
@@ -232,13 +235,14 @@
     <div class="livro-teaser-card">
       <div class="livro-teaser-cover">
         <img src="livro/assets/capa-livro.jpg" alt="Capa do livro Liderando Organizações para a Era da Inteligência Artificial, de Sebastião Nunes" loading="lazy" width="708" height="1000">
+        <img src="livro/assets/capa-depois-de-dezembro.jpg" alt="Capa do livro Depois de Dezembro, de Sebastião Nunes" loading="lazy" width="708" height="1017">
       </div>
       <div class="livro-teaser-content">
-        <div class="section-eyebrow">Novo livro</div>
-        <h2 class="livro-teaser-title">Liderando Organizações para a Era da Inteligência Artificial</h2>
-        <p class="livro-teaser-text">A inteligência artificial amplia capacidades. Mas são a liderança, a cultura, os processos, a governança e os dados que determinam se esse potencial se transforma em resultados.</p>
-        <p class="livro-teaser-text">Conheça uma abordagem executiva para preparar organizações capazes de utilizar IA com consistência e gerar resultados que persistem.</p>
-        <a class="btn-primary" href="livro/">Conhecer o livro →</a>
+        <div class="section-eyebrow">Publicações</div>
+        <h2 class="livro-teaser-title">Dois livros sobre estratégia e execução</h2>
+        <p class="livro-teaser-text"><strong>Liderando Organizações para a Era da Inteligência Artificial</strong> trata de preparar a organização para o que vem. <strong>Depois de Dezembro</strong>, meu livro mais recente, trata de fazer o que foi decidido acontecer.</p>
+        <p class="livro-teaser-text">Os dois estão disponíveis para download gratuito, na íntegra.</p>
+        <a class="btn-primary" href="livro/">Baixar os livros →</a>
       </div>
     </div>
   </div>
@@ -251,8 +255,11 @@
       <div class="sobre-avatar"><img src="livro/assets/foto-sebastiao-nunes.jpg" alt="Sebastião Nunes"></div>
       <div>
         <div class="sobre-name">Sebastião Nunes</div>
-        <div class="sobre-title">Executivo de Estratégia, Transformação e Inovação</div>
-        <p class="sobre-bio">Tenho sólida experiência em Planejamento Estratégico, Inovação e Transformação Empresarial. Ao longo da carreira, liderei iniciativas de transformação organizacional, governança corporativa, implantação de tecnologias, gestão de portfólio de projetos e PMO Executivo, apoiando empresas de diferentes portes e segmentos na construção de organizações mais eficientes, competitivas e sustentáveis.<br><br>Acredito que a Inteligência Artificial representa uma das maiores oportunidades de transformação da história dos negócios. No entanto, seu verdadeiro potencial somente se concretiza quando a tecnologia está alinhada à estratégia, aos processos, à cultura organizacional e ao desenvolvimento das lideranças e equipes.<br><br>Foi dessa convicção que nasceram os diagnósticos estratégicos gratuitos reunidos aqui. Ao acompanhar organizações em suas jornadas de transformação, observei um padrão recorrente: muitas empresas avançam, seja em IA ou em qualquer outra agenda estratégica, antes mesmo de desenvolver as capacidades organizacionais necessárias para transformar intenção em resultado.<br><br>Por isso, concebi esta plataforma para ser o primeiro passo dessa jornada: ajudar empresas e lideranças a compreenderem seu estágio atual, identificarem prioridades de evolução e estabelecerem uma base sólida para que suas decisões estratégicas gerem resultados concretos, sustentáveis e alinhados ao negócio.</p>
+        <div class="sobre-title">Executivo de Estratégia, Governança e Transformação</div>
+        <p class="sobre-bio">Tenho mais de vinte anos de experiência em planejamento estratégico, governança, processos, qualidade e transformação organizacional. A trajetória passou por três posições distintas — dentro das empresas, em consultoria e na direção executiva, com reporte à presidência e apresentação ao conselho de administração — nos setores de saúde, serviços financeiros, construção civil, telecomunicações, seguros, setor público, transporte e logística, no Brasil e em outros países da América Latina.</p>
+        <p class="sobre-bio">Sou graduado em Administração, com MBA em Gestão da Excelência nas Organizações, mestrado em Administração Estratégica e certificação em conselhos de administração.</p>
+        <p class="sobre-bio">O que me move é uma convicção simples: toda organização precisa de uma arquitetura — de liderança, cultura, processos e dados — para transformar decisão em resultado. Isso vale tanto para preparar uma empresa para o que vem quanto para sustentar a execução do que já foi decidido. É essa convicção que está por trás de tudo o que compartilho aqui: os diagnósticos gratuitos, os dois livros que escrevi e as reflexões que publico.</p>
+        <p class="sobre-bio">Reuni essas ideias em <strong>Liderando Organizações para a Era da Inteligência Artificial</strong> e em <strong>Depois de Dezembro</strong>, meu livro mais recente — ambos disponíveis para download gratuito. Mantenho este espaço, acima de tudo, para que empresas e lideranças que buscam experiência em planejamento, estratégia e transformação me encontrem.</p>
         <div class="sobre-tags">
           <span class="sobre-tag">Estratégia Corporativa</span>
           <span class="sobre-tag">Transformação Empresarial</span>
@@ -260,6 +267,9 @@
           <span class="sobre-tag">PMO Executivo</span>
           <span class="sobre-tag">Inovação</span>
           <span class="sobre-tag">Inteligência Artificial</span>
+        </div>
+        <div class="sobre-actions">
+          <a class="btn-ghost" href="livro/">Conhecer os livros →</a>
         </div>
       </div>
     </div>
