@@ -126,6 +126,14 @@
   .check-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; margin: 8px 0 28px; }
   .check-item { background: var(--navy-mid); border: 1px solid rgba(196,164,100,0.15); border-radius: 10px; padding: 14px 18px; font-size: 14px; color: var(--ivory); display: flex; gap: 10px; align-items: flex-start; line-height: 1.5; }
   .check-item::before { content: '✓'; color: var(--gold-bright); font-weight: 700; flex-shrink: 0; }
+  .sobre-subhead { font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--gold); margin: 32px 0 18px; }
+  .credential-timeline { margin: 0 0 30px; }
+  .credential-item { position: relative; padding-left: 24px; padding-bottom: 18px; border-left: 1px solid rgba(196,164,100,0.22); margin-left: 3px; }
+  .credential-item:last-child { border-left-color: transparent; padding-bottom: 0; }
+  .credential-item::before { content: ''; position: absolute; left: -4.5px; top: 3px; width: 8px; height: 8px; border-radius: 50%; background: var(--gold-bright); box-shadow: 0 0 0 3px var(--navy); }
+  .credential-name { font-size: 14.5px; color: var(--ivory-bright); font-weight: 600; line-height: 1.45; }
+  .credential-inst { font-size: 12.5px; color: var(--gold-bright); font-weight: 500; margin-top: 3px; letter-spacing: 0.2px; }
+  .credential-tag { display: inline-block; margin-left: 10px; font-size: 10px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; color: var(--gold-bright); background: var(--gold-dim); border: 1px solid rgba(196,164,100,0.35); padding: 2px 9px; border-radius: 10px; vertical-align: middle; white-space: nowrap; }
   .contato { text-align: center; background: linear-gradient(135deg, var(--navy-mid) 0%, var(--navy-light) 100%); }
   .contato .section-inner { max-width: 560px; margin: 0 auto; }
   .contato .section-eyebrow, .contato .section-title, .contato .section-sub { margin-left: auto; margin-right: auto; }
@@ -267,7 +275,36 @@
           <div class="check-item">Reporte direto à presidência e apresentações regulares a conselhos de administração</div>
           <div class="check-item">Atuação em saúde, serviços financeiros, construção civil, telecomunicações, seguros, setor público, transporte e logística</div>
           <div class="check-item">Experiência no Brasil e em outros países da América Latina</div>
-          <div class="check-item">Graduação em Administração, MBA em Gestão da Excelência nas Organizações, mestrado em Administração Estratégica e certificação em conselhos de administração</div>
+        </div>
+        <div class="sobre-subhead">Formação e certificações</div>
+        <div class="credential-timeline">
+          <div class="credential-item">
+            <div class="credential-name">Curso preparatório para certificação PMP, pela Clarify Treinamentos (Authorized Training Partner do PMI)<span class="credential-tag">Em andamento</span></div>
+          </div>
+          <div class="credential-item">
+            <div class="credential-name">EF SET English Certificate</div>
+            <div class="credential-inst">Nível C1 (Advanced)</div>
+          </div>
+          <div class="credential-item">
+            <div class="credential-name">Certificação de Conselheiros</div>
+            <div class="credential-inst">Board Academy Br</div>
+          </div>
+          <div class="credential-item">
+            <div class="credential-name">Especialização em Inteligência Artificial para Negócios</div>
+            <div class="credential-inst">IBMEC</div>
+          </div>
+          <div class="credential-item">
+            <div class="credential-name">Mestrado em Administração, Gestão Estratégica de Organizações</div>
+            <div class="credential-inst">FUMEC</div>
+          </div>
+          <div class="credential-item">
+            <div class="credential-name">MBA em Gestão da Excelência nas Organizações</div>
+            <div class="credential-inst">Fundação Pedro Leopoldo</div>
+          </div>
+          <div class="credential-item">
+            <div class="credential-name">Graduação em Administração de Empresas</div>
+            <div class="credential-inst">PUC Minas</div>
+          </div>
         </div>
         <p class="sobre-bio">O que me move é uma convicção simples: toda organização precisa de uma arquitetura (de liderança, cultura, processos e dados) para transformar decisão em resultado. Isso vale tanto para preparar uma empresa para o que vem quanto para sustentar a execução do que já foi decidido. É essa convicção que está por trás de tudo o que compartilho aqui: os diagnósticos gratuitos, os dois livros que escrevi e as reflexões que publico.</p>
         <p class="sobre-bio">Reuni essas ideias em <strong>Liderando Organizações para a Era da Inteligência Artificial</strong> e em <strong>Depois de Dezembro</strong>, meu livro mais recente, ambos disponíveis para download gratuito. Mantenho este espaço por dois motivos: trocar ideias e experiências com outras lideranças, e contribuir com o que aprendi ao longo do caminho.</p>
